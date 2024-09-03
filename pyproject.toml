@@ -1,0 +1,124 @@
+[project]
+name = "cookiecutter-uv"
+version = "0.1.0"
+description = "A python cookiecutter application to create a new python project that uses uv to manage its dependencies."
+authors = [{ name = "Florian Maas", email = "fpgmaas@gmail.com" }]
+readme = "README.md"
+keywords = ['cookiecutter', 'template', 'uv']
+requires-python = ">=3.8,<4.0"
+dependencies = [
+  "cookiecutter>=2.1.1"
+]
+
+
+[project.urls]
+Repository = "https://github.com/fpgmaas/cookiecutter-uv"
+Documentation = "https://fpgmaas.github.io/cookiecutter-uv/"
+Homepage = "https://fpgmaas.github.io/cookiecutter-uv/"
+
+[tool.uv]
+dev-dependencies = [
+    "pytest>=7.2.0",
+    "pre-commit>=2.20.0",
+    "pytest-cookies>=0.6.1",
+    "tox>=3.25.1",
+    "deptry>=0.6.4",
+    "mypy>=0.991",
+    "pytest-cov>=4.0.0",
+    "ruff>=0.0.235",
+    "mkdocs>=1.4.2",
+    "mkdocs-material>=8.5.10",
+    "mkdocstrings[python]>=0.19.0",
+]
+
+[build-system]
+requires = ["setuptools >= 61.0"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools]
+packages = ["cookiecutter_uv"]
+
+[tool.setuptools.package-data]
+"cookiecutter_uv" = ["*"]
+
+[project.scripts]
+ccp = 'cookiecutter_uv.cli:main'
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+
+[tool.coverage.report]
+skip_empty = true
+
+[tool.coverage.run]
+branch = true
+source = ["cookiecutter_uv"]
+
+[tool.mypy]
+files = ['cookiecutter_uv']
+disallow_untyped_defs = "True"
+disallow_any_unimported = "True"
+no_implicit_optional = "True"
+check_untyped_defs = "True"
+warn_return_any = "True"
+warn_unused_ignores = "True"
+show_error_codes = "True"
+
+[tool.deptry]
+extend_exclude = [
+  ".+/test_foo.py"
+]
+
+[tool.deptry.per_rule_ignores]
+DEP002 = ["cookiecutter"]
+
+[tool.ruff]
+target-version = "py37"
+line-length = 120
+fix = true
+
+[tool.ruff.lint]
+select = [
+    # flake8-2020
+    "YTT",
+    # flake8-bandit
+    "S",
+    # flake8-bugbear
+    "B",
+    # flake8-builtins
+    "A",
+    # flake8-comprehensions
+    "C4",
+    # flake8-debugger
+    "T10",
+    # flake8-simplify
+    "SIM",
+    # isort
+    "I",
+    # mccabe
+    "C90",
+    # pycodestyle
+    "E", "W",
+    # pyflakes
+    "F",
+    # pygrep-hooks
+    "PGH",
+    # pyupgrade
+    "UP",
+    # ruff
+    "RUF",
+    # tryceratops
+    "TRY",
+]
+ignore = [
+    # LineTooLong
+    "E501",
+    # DoNotAssignLambda
+    "E731",
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["S101", "S603"]
+
+[tool.ruff.lint.isort]
+required-imports = ["from __future__ import annotations"]

@@ -1,0 +1,60 @@
+site_name: cookiecutter-uv
+repo_url: https://github.com/fpgmaas/cookiecutter-uv
+site_url: https://fpgmaas.github.io/cookiecutter-uv
+site_description: A cookiecutter template for Python projects that use uv for its dependency management
+site_author: Florian Maas
+edit_uri: edit/main/docs/
+repo_name: fpgmaas/cookiecutter-uv
+copyright: Maintained by <a href="https://fpgmaas.com">Florian</a>.
+
+nav:
+  - Home: index.md
+  - Features:
+      - CI/CD with Github Actions: features/cicd.md
+      - Linting & code quality: features/linting.md
+      - Makefile: features/makefile.md
+      - Dependency management with uv: features/uv.md
+      - Publishing to PyPi: features/publishing.md
+      - Testing with Pytest: features/pytest.md
+      - Test coverage with codecov: features/codecov.md
+      - Documentation with MkDocs: features/mkdocs.md
+      - Compatibility testing with Tox: features/tox.md
+      - Containerization with Docker: features/docker.md
+      - Devcontainer with VSCode: features/devcontainer.md
+  - Tutorial: tutorial.md
+  - Prompt Arguments: prompt_arguments.md
+plugins:
+  - search
+theme:
+  name: material
+  feature:
+    tabs: true
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: white
+      accent: deep orange
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: black
+      accent: deep orange
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  icon:
+    repo: fontawesome/brands/github
+
+extra:
+  social:
+    - icon: fontawesome/brands/github
+      link: https://github.com/fpgmaas/cookiecutter-uv
+    - icon: fontawesome/brands/python
+      link: https://pypi.org/project/cookiecutter-uv/
+markdown_extensions:
+  - toc:
+      permalink: true
+  - pymdownx.arithmatex:
+      generic: true

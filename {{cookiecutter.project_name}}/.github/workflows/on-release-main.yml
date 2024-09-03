@@ -1,0 +1,72 @@
+name: release-main
+
+on:
+  release:
+    types: [published]
+    branches: [main]
+
+jobs:
+{% if cookiecutter.publish_to_pypi == "y" %}
+  set-version:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Export tag
+        id: vars
+        run: {% raw %}echo tag=${GITHUB_REF#refs/*/} >> $GITHUB_OUTPUT{% endraw %}
+        if: {% raw %}${{ github.event_name == 'release' }}{% endraw %}
+
+      - name: Update project version
+        run: |
+          sed -i "s/^version = \".*\"/version = \"$RELEASE_VERSION\"/" pyproject.toml
+        env:
+          RELEASE_VERSION: {% raw %}${{ steps.vars.outputs.tag }}{% endraw %}
+        if: {% raw %}${{ github.event_name == 'release' }}{% endraw %}
+
+      - name: Upload updated pyproject.toml
+        uses: actions/upload-artifact@v4
+        with:
+          name: pyproject-toml
+          path: pyproject.toml
+
+  publish:
+    runs-on: ubuntu-latest
+    needs: [set-version]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+
+      - name: Download updated pyproject.toml
+        uses: actions/download-artifact@v4
+        with:
+          name: pyproject-toml
+
+      - name: Build package
+        run: uvx --from build pyproject-build --installer uv
+
+      - name: Publish package
+        run: uvx twine upload dist/*
+        env:
+          TWINE_USERNAME: __token__
+          TWINE_PASSWORD: {% raw %}${{ secrets.PYPI_TOKEN }}{% endraw %}
+{% endif %}
+{%- if cookiecutter.mkdocs == "y" %}
+  deploy-docs:
+    {%- if cookiecutter.publish_to_pypi == "y" %}
+    needs: publish
+    {%- endif %}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+
+      - name: Deploy documentation
+        run: uv run mkdocs gh-deploy --force
+{% endif %}

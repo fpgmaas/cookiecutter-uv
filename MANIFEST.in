@@ -1,0 +1,3 @@
+include cookiecutter.json
+recursive-include hooks *
+recursive-include {{cookiecutter.project_name}} *

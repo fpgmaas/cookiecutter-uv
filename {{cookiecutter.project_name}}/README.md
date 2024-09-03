@@ -33,12 +33,21 @@ Then, install the environment and the pre-commit hooks with
 make install
 ```
 
+This will also generate your `uv.lock` file
+
 ### 3. Run the pre-commit hooks
 
 Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
 
 ```bash
 uv run pre-commit run -a
+```
+
+### 4. Commit the changes
+
+Lastly, commit the changes made by the two steps above to your repository.
+
+```bash
 git add .
 git commit -m 'Fix formatting issues'
 git push origin main

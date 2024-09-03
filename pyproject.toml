@@ -55,9 +55,6 @@ packages = ["cookiecutter_uv"]
 [tool.setuptools.package-data]
 "cookiecutter_uv" = ["*"]
 
-[project.scripts]
-ccp = 'cookiecutter_uv.cli:main'
-
 [tool.pytest.ini_options]
 testpaths = ["tests"]
 

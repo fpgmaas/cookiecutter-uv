@@ -5,10 +5,10 @@ inputs:
   python-version:
     description: 'Python version for setup-python'
     required: true
-    default: '3.12'
+    default: "3.12"
 
 runs:
-  using: 'composite'
+  using: "composite"
   steps:
     - uses: actions/setup-python@v5
       with:
@@ -17,7 +17,7 @@ runs:
     - name: Install uv
       run: pipx install uv
       env:
-        UV_VERSION: '0.4.2'
+        UV_VERSION: "0.4.2"
       shell: bash
 
     - name: Install Python dependencies

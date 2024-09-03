@@ -13,13 +13,11 @@ curl -LsSf https://astral.sh/uv/install.sh | sh
 
 ## Step 2: Generate your project
 
-First, navigate to the directory in which you want the project to be
-created. Then, we need to install `cookiecutter-uv` with the
-following command:
+On your local machine, navigate to the directory in which you want to
+create a project directory, and run the following command:
 
 ```bash
-pip install cookiecutter
-cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
+uvx cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
 ```
 
 For an explanation of the prompt arguments, see

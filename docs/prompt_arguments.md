@@ -47,7 +47,7 @@ and unittests.
 `Makefile` and Github workflows to make publishing your code as
 simple as creating a new release release on Github. For more info,
 see
-[Publishing to Pypi](./features/publishing.md).
+[Publishing to PyPI](./features/publishing.md).
 
 **deptry**
 

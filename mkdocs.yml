@@ -14,7 +14,7 @@ nav:
       - Linting & code quality: features/linting.md
       - Makefile: features/makefile.md
       - Dependency management with uv: features/uv.md
-      - Publishing to PyPi: features/publishing.md
+      - Publishing to PyPI: features/publishing.md
       - Testing with Pytest: features/pytest.md
       - Test coverage with codecov: features/codecov.md
       - Documentation with MkDocs: features/mkdocs.md
@@ -25,25 +25,29 @@ nav:
   - Prompt Arguments: prompt_arguments.md
 plugins:
   - search
+extra_css:
+  - stylesheets/extra.css
 theme:
   name: material
   feature:
     tabs: true
   palette:
+    # Note: Using the system theme works with the insiders version
+    # https://squidfunk.github.io/mkdocs-material/setup/changing-the-colors/#automatic-light-dark-mode
+    - media: "(prefers-color-scheme)"
+      toggle:
+        icon: material/brightness-auto
+        name: Switch to light mode
     - media: "(prefers-color-scheme: light)"
-      scheme: default
-      primary: white
-      accent: deep orange
+      scheme: astral-light
       toggle:
         icon: material/brightness-7
         name: Switch to dark mode
     - media: "(prefers-color-scheme: dark)"
-      scheme: slate
-      primary: black
-      accent: deep orange
+      scheme: astral-dark
       toggle:
         icon: material/brightness-4
-        name: Switch to light mode
+        name: Switch to system preference
   icon:
     repo: fontawesome/brands/github
 

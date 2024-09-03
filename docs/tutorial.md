@@ -53,7 +53,7 @@ If you enabled code coverage with codecov for your project, you should sign up w
 
 ## Step 7: Configure your repository secrets
 
-If you want to deploy your project to Pypi using the
+If you want to deploy your project to PyPI using the
 Github Actions, you will have to set some repository secrets. For
 instructions on how to do that, see [here](./features/publishing.md#set-up-for-pypi).
 

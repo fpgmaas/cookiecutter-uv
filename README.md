@@ -4,7 +4,6 @@
 
 ---
 
-[![Release](https://img.shields.io/github/v/release/fpgmaas/cookiecutter-uv)](https://pypi.org/project/cookiecutter-uv/)
 [![Build status](https://img.shields.io/github/actions/workflow/status/fpgmaas/cookiecutter-uv/main.yml?branch=main)](https://github.com/fpgmaas/cookiecutter-uv/actions/workflows/main.yml?query=branch%3Amain)
 [![Supported Python versions](https://img.shields.io/pypi/pyversions/cookiecutter-uv)](https://pypi.org/project/cookiecutter-uv/)
 [![Docs](https://img.shields.io/badge/docs-gh--pages-blue)](https://fpgmaas.github.io/cookiecutter-uv/)
@@ -16,7 +15,7 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 - CI/CD with [GitHub Actions](https://github.com/features/actions)
 - Pre-commit hooks with [pre-commit](https://pre-commit.com/)
 - Code quality with [ruff](https://github.com/charliermarsh/ruff), [mypy](https://mypy.readthedocs.io/en/stable/), [deptry](https://github.com/fpgmaas/deptry/) and [prettier](https://prettier.io/)
-- Publishing to [Pypi](https://pypi.org) by creating a new release on GitHub
+- Publishing to [PyPI](https://pypi.org) by creating a new release on GitHub
 - Testing and coverage with [pytest](https://docs.pytest.org/en/7.1.x/) and [codecov](https://about.codecov.io/)
 - Documentation with [MkDocs](https://www.mkdocs.org/)
 - Compatibility testing for multiple versions of Python with [Tox](https://tox.wiki/en/latest/)
@@ -27,7 +26,7 @@ This is a modern Cookiecutter template that can be used to initiate a Python pro
 
 <p align="center">
   <a href="https://fpgmaas.github.io/cookiecutter-uv/">Documentation</a> - <a href="https://github.com/fpgmaas/cookiecutter-uv-example">Example</a> -
-  <a href="https://pypi.org/project/cookiecutter-uv/">PyPi</a>
+  <a href="https://pypi.org/project/cookiecutter-uv/">PyPI</a>
 </p>
 
 ---
@@ -64,7 +63,7 @@ You are now ready to start development on your project! The CI/CD
 pipeline will be triggered when you open a pull request, merge to main,
 or when you create a new release.
 
-To finalize the set-up for publishing to PyPi, see
+To finalize the set-up for publishing to PyPI, see
 [here](https://fpgmaas.github.io/cookiecutter-uv/features/publishing/#set-up-for-pypi).
 For activating the automatic documentation with MkDocs, see
 [here](https://fpgmaas.github.io/cookiecutter-uv/features/mkdocs/#enabling-the-documentation-on-github).

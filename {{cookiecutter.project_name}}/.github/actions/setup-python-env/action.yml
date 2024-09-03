@@ -1,5 +1,5 @@
-name: 'Setup Python Environment'
-description: 'Set up Python environment for the given Python version'
+name: "Setup Python Environment"
+description: "Set up Python environment for the given Python version"
 
 inputs:
   python-version:

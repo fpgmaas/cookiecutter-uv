@@ -13,6 +13,8 @@
 
 ## Getting started with your project
 
+### 1. Create a New Repository
+
 First, create a repository on GitHub with the same name as this project, and then run the following commands:
 
 ```bash
@@ -23,10 +25,23 @@ git remote add origin git@github.com:{{cookiecutter.author_github_handle}}/{{coo
 git push -u origin main
 ```
 
-Finally, install the environment and the pre-commit hooks with
+### 2. Set Up Your Development Environment
+
+Then, install the environment and the pre-commit hooks with
 
 ```bash
 make install
+```
+
+### 3. Run the pre-commit hooks
+
+Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
+
+```bash
+uv run pre-commit run -a
+git add .
+git commit -m 'Fix formatting issues'
+git push origin main
 ```
 
 You are now ready to start development on your project!

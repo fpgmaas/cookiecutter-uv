@@ -18,7 +18,7 @@ This command will generate and build your documentation, and start the server lo
 
 ## Enabling the documentation on GitHub
 
-To enable your documentation on GitHub, first `Settings > Actions > General` under `Workflow permissions` select `Read and write permissions`
+To enable your documentation on GitHub, first navigate to `Settings > Actions > General` in your repository, and under `Workflow permissions` select `Read and write permissions`
 
 Then, create a [new release](./cicd.md#how-to-trigger-a-release) for your project.
 

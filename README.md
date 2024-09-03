@@ -41,7 +41,7 @@ pip install cookiecutter
 cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
 ```
 
-Then simply follow the steps in the `README.md` of the project that you just created.
+Follow the prompts to configure your project. Once completed, a new directory containing your project will be created. Then navigate into your newly created project directory and follow the instructions in the `README.md` to complete the setup of your project.
 
 ## Acknowledgements
 

@@ -35,31 +35,9 @@ pip install cookiecutter
 cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
 ```
 
-Create a repository on GitHub, and then run the following commands, replacing `<project-name>`, with the name that you gave the Github repository and
-`<github_author_handle>` with your Github username.
+Follow the prompts to configure your project. Once completed, a new directory containing your project will be created. Then navigate into your newly created project directory and follow the instructions in the `README.md` to complete the setup of your project.
 
-```bash
-cd <project_name>
-git init -b main
-git add .
-git commit -m "Init commit"
-git remote add origin git@github.com:<github_author_handle>/<project_name>.git
-git push -u origin main
-```
-
-Finally, install the environment and the pre-commit hooks with
-
-```bash
-make install
-```
-
-You are now ready to start development on your project! The CI/CD
-pipeline will be triggered when you open a pull request, merge to main,
-or when you create a new release.
-
-To finalize the set-up for publishing to PyPI, see [here](./features/publishing.md#set-up-for-pypi). For activating the automatic documentation with MkDocs, see [here](./features/mkdocs.md#enabling-the-documentation-on-github). To enable the code coverage reports, see [here](./features/codecov).
-
-## Acknowledgements
+### Acknowledgements
 
 This project is partially based on [Audrey
 Feldroy's](https://github.com/audreyfeldroy) great

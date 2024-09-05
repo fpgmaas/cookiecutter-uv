@@ -79,7 +79,7 @@ docs: ## Build and serve the documentation
 
 .PHONY: help
 help:
-	@python -c "import re; \
-	[print(f'{m[0]:<20} {m[1]}') for m in re.findall(r'^([a-zA-Z_-]+):.*?## (.*)$$', open('$(MAKEFILE_LIST)').read(), re.M)]"
+	@uv run python -c "import re; \
+	[print(f'\033[36m{m[0]:<20}\033[0m {m[1]}') for m in re.findall(r'^([a-zA-Z_-]+):.*?## (.*)$$', open('$(MAKEFILE_LIST)').read(), re.M)]"
 
 .DEFAULT_GOAL := help

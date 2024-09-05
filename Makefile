@@ -56,7 +56,8 @@ build: clean-build ## Build wheel file
 
 .PHONY: clean-build
 clean-build: ## clean build artifacts
-	@rm -rf dist
+	@echo "[-] Removing build artifacts"
+	@python -c "import shutil; import os; shutil.rmtree('dist', ignore_errors=True) if os.path.exists('dist') else None"
 
 .PHONY: publish
 publish: ## Publish a release to PyPI.
@@ -78,6 +79,7 @@ docs: ## Build and serve the documentation
 
 .PHONY: help
 help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@python -c "import re; \
+	[print(f'{m[0]:<20} {m[1]}') for m in re.findall(r'^([a-zA-Z_-]+):.*?## (.*)$$', open('$(MAKEFILE_LIST)').read(), re.M)]"
 
 .DEFAULT_GOAL := help

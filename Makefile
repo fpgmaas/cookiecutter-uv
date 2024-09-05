@@ -56,8 +56,8 @@ build: clean-build ## Build wheel file
 
 .PHONY: clean-build
 clean-build: ## clean build artifacts
-	@echo "[-] Removing build artifacts"
-	@python -c "import shutil; import os; shutil.rmtree('dist', ignore_errors=True) if os.path.exists('dist') else None"
+	@echo "🚀 Removing build artifacts"
+	@python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
 
 .PHONY: publish
 publish: ## Publish a release to PyPI.

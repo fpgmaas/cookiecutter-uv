@@ -23,7 +23,7 @@ runs:
       with:
         version: {% raw %}${{ inputs.uv-version }}{% endraw %}
         enable-cache: 'true'
-        cache-suffix: ${{ matrix.python-version }}
+        cache-suffix: {% raw %}${{ matrix.python-version }}{% endraw %}
 
     - name: Install Python dependencies
       run: uv sync --frozen

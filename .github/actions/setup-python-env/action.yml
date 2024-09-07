@@ -22,6 +22,8 @@ runs:
       uses: astral-sh/setup-uv@v2
       with:
         version: ${{ inputs.uv-version }}
+        enable-cache: "true"
+        cache-suffix: ${{ matrix.python-version }}
 
     - name: Install Python dependencies
       run: uv sync --frozen

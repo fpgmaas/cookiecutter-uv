@@ -213,7 +213,7 @@ wheels = [
 
 [[package]]
 name = "cookiecutter-uv"
-version = "0.1.0"
+version = "0.0.1"
 source = { editable = "." }
 dependencies = [
     { name = "cookiecutter" },
@@ -239,7 +239,7 @@ requires-dist = [{ name = "cookiecutter", specifier = ">=2.1.1" }]
 
 [package.metadata.requires-dev]
 dev = [
-    { name = "deptry", specifier = ">=0.6.4" },
+    { name = "deptry", specifier = ">=0.20.0" },
     { name = "mkdocs", specifier = ">=1.4.2" },
     { name = "mkdocs-material", specifier = ">=8.5.10" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=0.19.0" },

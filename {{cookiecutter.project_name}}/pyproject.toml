@@ -16,7 +16,7 @@ Documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cooki
 dev-dependencies = [
     "pytest>=7.2.0",
     "pre-commit>=2.20.0",
-    "tox>=3.25.1",
+    "tox-uv>=1.11.3",
     {% if cookiecutter.deptry == 'y' %}"deptry>=0.20.0",{% endif %}
     "mypy>=0.991",
     {% if cookiecutter.codecov == 'y' %}"pytest-cov>=4.0.0",{% endif %}

@@ -15,9 +15,7 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          setup_commands:
-              - import sys
-              - sys.path.append('../')
+          paths: [{{cookiecutter.project_slug}}]
 theme:
   name: material
   feature:

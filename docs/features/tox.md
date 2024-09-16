@@ -1,6 +1,6 @@
 # Compatibility testing with Tox
 
-If `tox` is set to `"y"` project uses [Tox](https://tox.wiki/en/latest/)
+If `tox` is set to `"y"` project uses [tox-uv](https://github.com/tox-dev/tox-uv)
 to test compatibility with multiple Python versions. You can run `tox` locally:
 
 ```sh

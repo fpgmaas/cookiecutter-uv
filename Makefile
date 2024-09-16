@@ -1,15 +1,15 @@
 .PHONY: bake
 bake: ## bake without inputs and overwrite if exists.
-	@cookiecutter --no-input . --overwrite-if-exists
+	@uv run cookiecutter --no-input . --overwrite-if-exists
 
 .PHONY: bake-with-inputs
 bake-with-inputs: ## bake with inputs and overwrite if exists.
-	@cookiecutter . --overwrite-if-exists
+	@uv run cookiecutter . --overwrite-if-exists
 
 .PHONY: bake-and-test-deploy
 bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test GH Actions
 	@rm -rf cookiecutter-uv-example || true
-	@cookiecutter --no-input . --overwrite-if-exists \
+	@uv run cookiecutter --no-input . --overwrite-if-exists \
 		author="Florian Maas" \
 		email="fpgmaas@gmail.com" \
 		github_author_handle=fpgmaas \

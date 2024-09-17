@@ -32,8 +32,9 @@ build: clean-build ## Build wheel file
 	@uvx --from build pyproject-build --installer uv
 
 .PHONY: clean-build
-clean-build: ## clean build artifacts
-	@rm -rf dist
+clean-build: ## Clean build artifacts
+	@echo "🚀 Removing build artifacts"
+	@uv run python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
 
 {%- if cookiecutter.publish_to_pypi == "y"%}
 
@@ -62,6 +63,7 @@ docs: ## Build and serve the documentation
 
 .PHONY: help
 help:
-	@grep -E '^[a-zA-Z_-]+:.*?## .*$$' $(MAKEFILE_LIST) | awk 'BEGIN {FS = ":.*?## "}; {printf "\033[36m%-20s\033[0m %s\n", $$1, $$2}'
+	@uv run python -c "import re; \
+	[[print(f'\033[36m{m[0]:<20}\033[0m {m[1]}') for m in re.findall(r'^([a-zA-Z_-]+):.*?## (.*)$$', open(makefile).read(), re.M)] for makefile in ('$(MAKEFILE_LIST)').strip().split()]"
 
 .DEFAULT_GOAL := help

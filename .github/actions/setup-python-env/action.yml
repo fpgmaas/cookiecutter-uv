@@ -3,9 +3,13 @@ description: "Set up Python environment for the given Python version"
 
 inputs:
   python-version:
-    description: "Python version for setup-python"
+    description: "Python version to use"
     required: true
     default: "3.12"
+  uv-version:
+    description: "uv version to use"
+    required: true
+    default: "0.4.6"
 
 runs:
   using: "composite"
@@ -15,10 +19,11 @@ runs:
         python-version: ${{ inputs.python-version }}
 
     - name: Install uv
-      run: pipx install uv
-      env:
-        UV_VERSION: "0.4.2"
-      shell: bash
+      uses: astral-sh/setup-uv@v2
+      with:
+        version: ${{ inputs.uv-version }}
+        enable-cache: "true"
+        cache-suffix: ${{ matrix.python-version }}
 
     - name: Install Python dependencies
       run: uv sync --frozen

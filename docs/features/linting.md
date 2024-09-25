@@ -16,9 +16,9 @@ This command will run the following tools:
 
 ```
 [tool.ruff]
-target-version = "py37"
+target-version = "py39"
 line-length = 120
-fix = false
+fix = true
 select = [
     # flake8-2020
     "YTT",
@@ -32,8 +32,6 @@ select = [
     "C4",
     # flake8-debugger
     "T10",
-    # flake8-print
-    "T20",
     # flake8-simplify
     "SIM",
     # isort
@@ -59,6 +57,9 @@ ignore = [
     # DoNotAssignLambda
     "E731",
 ]
+
+[tool.ruff.format]
+preview = true
 
 [tool.ruff.per-file-ignores]
 "tests/*" = ["S101"]
@@ -86,23 +87,7 @@ exclude = [
 
 # deptry
 
-[deptry](https://github.com/fpgmaas/deptry) is used to check the code for dependency issues, and it's configuration and can be edited in `pyproject.toml`.
-
-```toml
-[tool.mypy]
-disallow_untyped_defs = "True"
-disallow_any_unimported = "True"
-no_implicit_optional = "True"
-check_untyped_defs = "True"
-warn_return_any = "True"
-warn_unused_ignores = "True"
-show_error_codes = "True"
-exclude = [
-    '\.venv',
-    '{{cookiecutter.project_name}}',
-    'tests'
-]
-```
+[deptry](https://github.com/fpgmaas/deptry) is used to check the code for dependency issues, and it can be configured by adding a `[tool.deptry]` section in `pyproject.toml`. For more information, see [this section](https://deptry.com/usage/#configuration) documentation of deptry.
 
 # Prettier
 

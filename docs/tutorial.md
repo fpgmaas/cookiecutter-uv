@@ -47,7 +47,7 @@ git push -u origin main
 
 ### Step 5: Set Up Your Development Environment
 
-Initially, the CI/CD pipeline will fal for two reasons:
+Initially, the CI/CD pipeline will fail for two reasons:
 
 - The project does not yet contain a `uv.lock` file
 - There are a few formatting issues in the project

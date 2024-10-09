@@ -5,7 +5,7 @@ description = "A python cookiecutter application to create a new python project 
 authors = [{ name = "Florian Maas", email = "fpgmaas@gmail.com" }]
 readme = "README.md"
 keywords = ['cookiecutter', 'template', 'uv']
-requires-python = ">=3.8,<4.0"
+requires-python = ">=3.9,<4.0"
 dependencies = [
   "cookiecutter>=2.1.1"
 ]

@@ -29,7 +29,7 @@ Anything tagged with "enhancement" and "help wanted" is open to whoever wants to
 
 ## Write Documentation
 
-Cookiecutter PyPackage could always use more documentation, whether as part of the official docs, in docstrings, or even on the web in blog posts, articles, and such.
+{{cookiecutter.project_name}} could always use more documentation, whether as part of the official docs, in docstrings, or even on the web in blog posts, articles, and such.
 
 ## Submit Feedback
 

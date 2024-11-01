@@ -25,3 +25,5 @@ coverage:
 ignore:
   - "foo/bar.py"
 ```
+
+If `codecov` is set to `"n"`, `pytest-cov` is not added to the development dependencies and the github actions won't produce a coverage report.

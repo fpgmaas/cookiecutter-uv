@@ -1,15 +1,30 @@
 # {{cookiecutter.project_name}}
 
-[![Release](https://img.shields.io/github/v/release/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})](https://img.shields.io/github/v/release/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})
-[![Build status](https://img.shields.io/github/actions/workflow/status/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/main.yml?branch=main)](https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/branch/main/graph/badge.svg)](https://codecov.io/gh/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})
-[![Commit activity](https://img.shields.io/github/commit-activity/m/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})](https://img.shields.io/github/commit-activity/m/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})
-[![License](https://img.shields.io/github/license/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})](https://img.shields.io/github/license/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}})
+<p align="center">{{cookiecutter.project_description}}</p>
 
-{{cookiecutter.project_description}}
+---
+
+<p align="center">
+    <a href="https://img.shields.io/github/v/release/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}">
+        <img src="https://img.shields.io/github/v/release/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}" alt="{{cookiecutter.project_name}} version">
+    </a>
+    <a href="https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/actions/workflows/main.yml">
+        <img src="https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/actions/workflows/main.yml/badge.svg" alt="{{cookiecutter.project_name}} CI status">
+    </a>
+    <a href="https://codecov.io/gh/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}">
+        <img src="https://codecov.io/gh/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/branch/main/graph/badge.svg" alt="{{cookiecutter.project_name}} codecov">
+    </a>
+    <a href="https://img.shields.io/github/license/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}">
+        <img src="https://img.shields.io/github/license/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}" alt="{{cookiecutter.project_name}} license">
+    </a>
+</p>
+
 
 - **Github repository**: <https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}/>
+{% if cookiecutter.mkdocs == 'y' -%}
+
 - **Documentation** <https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/>
+{% endif %}
 
 ## Getting started with your project
 

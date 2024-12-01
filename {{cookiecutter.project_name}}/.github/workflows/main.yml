@@ -1,4 +1,4 @@
-name: Main
+name: CI
 
 on:
   push:
@@ -29,7 +29,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.9", "3.10", "3.11", "3.12", "3.13"]
+        python-version: {{ cookiecutter._python_version_matrix }}
       fail-fast: false
     defaults:
       run:
@@ -50,9 +50,11 @@ jobs:
         run: uv run mypy
 
 {% if cookiecutter.codecov == "y" %}
-      - name: Upload coverage reports to Codecov with GitHub Action on Python 3.11
+      - name: Upload coverage reports to Codecov with GitHub Action on Python 3.12
         uses: codecov/codecov-action@v4
-        if: {% raw %}${{ matrix.python-version == '3.11' }}{% endraw %}
+        if: {% raw %}${{ matrix.python-version == '3.12' }}{% endraw %}
+        env:
+          CODECOV_TOKEN: {% raw %}${{ secrets.CODECOV_TOKEN }}{% endraw %}
 {%- endif %}
 
 {%- if cookiecutter.mkdocs == "y" %}

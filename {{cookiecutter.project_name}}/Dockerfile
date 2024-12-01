@@ -1,5 +1,5 @@
 # Install uv
-FROM python:3.12-slim
+FROM python:{{cookiecutter.main_python_version}}-slim
 COPY --from=ghcr.io/astral-sh/uv:latest /uv /bin/uv
 
 # Change the working directory to the `app` directory

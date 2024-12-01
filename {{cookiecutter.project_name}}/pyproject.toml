@@ -5,23 +5,24 @@ description = "{{cookiecutter.project_description}}"
 authors = [{ name = "{{cookiecutter.author}}", email = "{{cookiecutter.email}}" }]
 readme = "README.md"
 keywords = ['python']
-requires-python = ">=3.9,<4.0"
+{%- set minor_version = cookiecutter.main_python_version.split('.')|map('int')|list %}
+requires-python = ">={{cookiecutter.main_python_version}},<4.0"
 classifiers = [
     "Intended Audience :: Developers",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
-    "Programming Language :: Python :: 3.11",
-    "Programming Language :: Python :: 3.12",
-    "Programming Language :: Python :: 3.13",
+    {%- for version in range(minor_version[1]|int, 14) %}
+    "Programming Language :: Python :: 3.{{version}}",
+    {%- endfor %}
     "Topic :: Software Development :: Libraries :: Python Modules",
 ]
 
 [project.urls]
-Homepage = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
-Repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
+{% if cookiecutter.mkdocs == 'y' -%}
 Documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+Homepage = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
+{%- endif %}
+Repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
 
 [tool.uv]
 dev-dependencies = [

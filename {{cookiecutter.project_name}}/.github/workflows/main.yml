@@ -30,7 +30,7 @@ jobs:
     strategy:
       matrix:
         python-version: {{ cookiecutter._python_version_matrix }}
-        fail-fast: false
+      fail-fast: false
     defaults:
       run:
         shell: bash

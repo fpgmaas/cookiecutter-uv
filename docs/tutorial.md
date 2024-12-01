@@ -21,7 +21,7 @@ uvx cookiecutter https://github.com/fpgmaas/cookiecutter-uv.git
 ```
 
 For an explanation of the prompt arguments, see
-[Prompt Arguments](../prompt_arguments).
+[Prompt Arguments](./prompt_arguments.md).
 
 ## Step 3: Set up your Github repository
 

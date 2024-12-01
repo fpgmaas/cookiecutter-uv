@@ -4,7 +4,7 @@ import os
 import shlex
 import subprocess
 
-from tests.utils import file_contains_text, is_valid_yaml, run_within_dir
+from utils import file_contains_text, is_valid_yaml, run_within_dir
 
 
 def test_bake_project(cookies):
@@ -143,3 +143,34 @@ def test_remove_release_workflow(cookies, tmp_path):
         result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "n"})
         assert result.exit_code == 0
         assert not os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")
+
+
+def test_main_python_version_prompt(cookies, tmp_path):
+    with run_within_dir(tmp_path):
+        result = cookies.bake(extra_context={"main_python_version": "3.10"})
+
+        assert result.exit_code == 0
+
+        main_yml_file = f"{result.project_path}/.github/workflows/main.yml"
+        assert os.path.isfile(main_yml_file)
+        assert not file_contains_text(main_yml_file, "3.8")
+        assert not file_contains_text(main_yml_file, "3.9")
+        assert file_contains_text(main_yml_file, "3.10")
+        assert file_contains_text(main_yml_file, "3.11")
+        assert file_contains_text(main_yml_file, "3.12")
+
+        tox_ini_file = f"{result.project_path}/tox.ini"
+        assert os.path.isfile(tox_ini_file)
+        assert not file_contains_text(tox_ini_file, "3.8: py38")
+        assert not file_contains_text(tox_ini_file, "3.9: py39")
+        assert file_contains_text(tox_ini_file, "3.10: py310")
+        assert file_contains_text(tox_ini_file, "3.11: py311")
+        assert file_contains_text(tox_ini_file, "3.12: py312")
+
+        pyproject_toml_file = f"{result.project_path}/pyproject.toml"
+        assert os.path.isfile(pyproject_toml_file)
+        assert file_contains_text(pyproject_toml_file, ">=3.10,<4.0")
+        assert file_contains_text(pyproject_toml_file, "Programming Language :: Python :: 3.10")
+        assert file_contains_text(pyproject_toml_file, "Programming Language :: Python :: 3.11")
+        assert file_contains_text(pyproject_toml_file, "Programming Language :: Python :: 3.12")
+        assert file_contains_text(pyproject_toml_file, "Programming Language :: Python :: 3.13")

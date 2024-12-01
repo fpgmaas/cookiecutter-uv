@@ -1,18 +1,18 @@
 #!/usr/bin/env python
 from __future__ import annotations
 
-import os
 import shutil
+from pathlib import Path
 
-PROJECT_DIRECTORY = os.path.realpath(os.path.curdir)
-
-
-def remove_file(filepath: str) -> None:
-    os.remove(os.path.join(PROJECT_DIRECTORY, filepath))
+PROJECT_DIRECTORY = Path.cwd().resolve()
 
 
-def remove_dir(filepath: str) -> None:
-    shutil.rmtree(os.path.join(PROJECT_DIRECTORY, filepath))
+def remove_file(__path: str) -> None:
+    (PROJECT_DIRECTORY / __path).unlink(missing_ok=True)
+
+
+def remove_dir(__path: str) -> None:
+    shutil.rmtree(PROJECT_DIRECTORY / __path, ignore_errors=True)
 
 
 if __name__ == "__main__":

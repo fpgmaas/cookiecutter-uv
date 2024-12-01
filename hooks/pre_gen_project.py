@@ -20,3 +20,14 @@ if not re.match(PROJECT_SLUG_REGEX, project_slug):
     )
     # Exit to cancel project
     sys.exit(1)
+
+# Update python version matrix
+"""
+{% set python_version_matrix = [] %}
+{% for ver in range(
+    cookiecutter.main_python_version|replace("3.", "")|int, 14
+) %}
+{% set _ = python_version_matrix.append("3." ~ ver) %}
+{% endfor %}
+{{ cookiecutter.update({"_python_version_matrix": python_version_matrix}) }}
+"""

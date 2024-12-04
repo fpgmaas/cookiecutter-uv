@@ -1,5 +1,6 @@
 from __future__ import annotations
 
+import difflib
 import os
 import shlex
 import subprocess

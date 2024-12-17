@@ -37,9 +37,6 @@ dev = [
     "mkdocstrings[python]>=0.26.1",{% endif %}
 ]
 
-[tool.uv]
-default-groups = ["dev"]
-
 [build-system]
 requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"

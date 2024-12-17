@@ -30,8 +30,8 @@ Repository = "https://github.com/fpgmaas/cookiecutter-uv"
 Documentation = "https://fpgmaas.github.io/cookiecutter-uv/"
 Homepage = "https://fpgmaas.github.io/cookiecutter-uv/"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest>=7.2.0",
     "pre-commit>=2.20.0",
     "pytest-cookies>=0.6.1",

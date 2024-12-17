@@ -23,8 +23,8 @@ Homepage = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutt
 Repository = "https://github.com/{{cookiecutter.author_github_handle}}/{{cookiecutter.project_name}}"
 Documentation = "https://{{cookiecutter.author_github_handle}}.github.io/{{cookiecutter.project_name}}/"
 
-[tool.uv]
-dev-dependencies = [
+[dependency-groups]
+dev = [
     "pytest>=7.2.0",
     "pre-commit>=2.20.0",
     "tox-uv>=1.11.3",
@@ -36,6 +36,9 @@ dev-dependencies = [
     "mkdocs-material>=8.5.10",
     "mkdocstrings[python]>=0.26.1",{% endif %}
 ]
+
+[tool.uv]
+default-groups = ["dev"]
 
 [build-system]
 requires = ["setuptools >= 61.0"]

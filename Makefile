@@ -2,6 +2,10 @@
 bake: ## bake without inputs and overwrite if exists.
 	@uv run cookiecutter --no-input . --overwrite-if-exists
 
+.PHONY: bake-src
+bake-src: ## bake without inputs and overwrite if exists.
+	@uv run cookiecutter --no-input . --overwrite-if-exists layout="src"
+
 .PHONY: bake-with-inputs
 bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@uv run cookiecutter . --overwrite-if-exists
@@ -10,6 +14,7 @@ bake-with-inputs: ## bake with inputs and overwrite if exists.
 bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test GH Actions
 	@rm -rf cookiecutter-uv-example || true
 	@uv run cookiecutter --no-input . --overwrite-if-exists \
+		layout="src" \
 		author="Florian Maas" \
 		email="fpgmaas@gmail.com" \
 		github_author_handle=fpgmaas \
@@ -42,7 +47,7 @@ check: ## Run code quality tools.
 	@echo "🚀 Static type checking: Running mypy"
 	@uv run mypy
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
-	@uv run deptry .
+	@uv run deptry {% if cookiecutter.layout == "src" %}"src"{% else %}.{% endif %}
 
 .PHONY: test
 test: ## Test the code with pytest.

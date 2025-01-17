@@ -12,6 +12,7 @@
 This is a modern Cookiecutter template that can be used to initiate a Python project with all the necessary tools for development, testing, and deployment. It supports the following features:
 
 - [uv](https://docs.astral.sh/uv/) for dependency management
+- Supports both [src and flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
 - CI/CD with [GitHub Actions](https://github.com/features/actions)
 - Pre-commit hooks with [pre-commit](https://pre-commit.com/)
 - Code quality with [ruff](https://github.com/charliermarsh/ruff), [mypy](https://mypy.readthedocs.io/en/stable/), [deptry](https://github.com/fpgmaas/deptry/) and [prettier](https://prettier.io/)

@@ -15,7 +15,13 @@ plugins:
   - mkdocstrings:
       handlers:
         python:
-          paths: [{{cookiecutter.project_slug}}]
+          paths: [
+            {%- if cookiecutter.layout == "src" -%}
+            "src/{{cookiecutter.project_slug}}"
+            {%- else -%}
+            "{{cookiecutter.project_slug}}"
+            {%- endif -%}
+            ]
 theme:
   name: material
   feature:

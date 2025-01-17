@@ -35,6 +35,13 @@ from <project_slug> import foo
 
 A short description of your project.
 
+**layout**
+
+`"flat"` or `"src"`, defaults to `"flat"`.
+
+- `"flat"`: Places the Python module in the root directory.
+- `"src"`: Organizes the project by placing the Python module inside a `src` directory.
+
 **include_github_actions**
 
 `"y"` or `"n"`. Adds a `.github` directory with various actions and

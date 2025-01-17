@@ -5,6 +5,7 @@
     "project_name": "example-project",
     "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
     "project_description": "This is a template repository for Python projects that use uv for their dependency management.",
+    "layout": ["flat", "src"],
     "include_github_actions": ["y", "n"],
     "publish_to_pypi": ["y", "n"],
     "deptry": ["y", "n"],

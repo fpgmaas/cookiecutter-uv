@@ -41,11 +41,19 @@ dev = [
 requires = ["setuptools >= 61.0"]
 build-backend = "setuptools.build_meta"
 
+{% if cookiecutter.layout == "flat" -%}
 [tool.setuptools]
 py-modules = ["{{cookiecutter.project_slug}}"]
+{%- endif %}
 
 [tool.mypy]
-files = ["{{cookiecutter.project_slug}}"]
+files = [
+    {%- if cookiecutter.layout == "src" -%}
+    "src"
+    {%- else -%}
+    "{{cookiecutter.project_slug}}"
+    {%- endif -%}
+]
 disallow_untyped_defs = true
 disallow_any_unimported = true
 no_implicit_optional = true
@@ -114,5 +122,11 @@ skip_empty = true
 
 [tool.coverage.run]
 branch = true
-source = ["{{cookiecutter.project_slug}}"]
+source = [
+    {%- if cookiecutter.layout == "src" -%}
+    "src"
+    {%- else -%}
+    "{{cookiecutter.project_slug}}"
+    {%- endif -%}
+]
 {% endif %}

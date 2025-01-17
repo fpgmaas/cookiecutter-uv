@@ -19,6 +19,10 @@ def move_file(filepath: str, target: str) -> None:
     os.rename(os.path.join(PROJECT_DIRECTORY, filepath), os.path.join(PROJECT_DIRECTORY, target))
 
 
+def move_dir(src: str, target: str) -> None:
+    shutil.move(os.path.join(PROJECT_DIRECTORY, src), os.path.join(PROJECT_DIRECTORY, target))
+
+
 if __name__ == "__main__":
     if "{{cookiecutter.include_github_actions}}" != "y":
         remove_dir(".github")
@@ -82,3 +86,8 @@ if __name__ == "__main__":
         remove_file("LICENSE_BSD")
         remove_file("LICENSE_ISC")
         remove_file("LICENSE_APACHE")
+
+    if "{{cookiecutter.layout}}" == "src":
+        if os.path.isdir("src"):
+            remove_dir("src")
+        move_dir("{{cookiecutter.project_slug}}", os.path.join("src", "{{cookiecutter.project_slug}}"))

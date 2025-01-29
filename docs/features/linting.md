@@ -65,25 +65,27 @@ preview = true
 "tests/*" = ["S101"]
 ```
 
-# mypy
+# Pyright
 
-[mypy](https://mypy.readthedocs.io/en/stable/) is used for static type checking, and it's configuration and can be edited in `pyproject.toml`.
+[Pyright](https://microsoft.github.io/pyright/) is used for static type checking. It's a fast, modern type checker created by Microsoft. Its configuration is in `pyproject.toml`:
 
 ```toml
-[tool.mypy]
-disallow_untyped_defs = true
-disallow_any_unimported = true
-no_implicit_optional = true
-check_untyped_defs = true
-warn_return_any = true
-warn_unused_ignores = true
-show_error_codes = true
-exclude = [
-    '\.venv',
-    '{{cookiecutter.project_name}}',
-    'tests'
-]
+[tool.pyright]
+include = ["src"]
+exclude = ["**/__pycache__", "build", "dist"]
+defineConstant = {}
+typeCheckingMode = "strict"
+useLibraryCodeForTypes = true
+reportMissingTypeStubs = "warning"
+reportUnknownMemberType = "warning"
+reportUnknownParameterType = "warning"
+reportUnknownVariableType = "warning"
+reportUnknownArgumentType = "warning"
+reportPrivateUsage = "warning"
+reportUntypedFunctionDecorator = "warning"
 ```
+
+The configuration above enables strict type checking with helpful warnings for missing type information. You can customize these settings based on your project's needs. For more information about configuration options, see [Pyright's configuration documentation](https://microsoft.github.io/pyright/#/configuration).
 
 # deptry
 
@@ -91,7 +93,7 @@ exclude = [
 
 # Black
 
-[Black](https://black.readthedocs.io/) is used to format non-Python files like markdown, JSON, and YAML files.
+[Black](https://black.readthedocs.io/) is used to format Python code files.
 Its options can be configured in `pyproject.toml`:
 
 ```toml

@@ -142,3 +142,6 @@ cython_debug/
 
 # Exclude .DS_Store files from being added
 .DS_Store
+
+# Pyright type checker
+.pyright/

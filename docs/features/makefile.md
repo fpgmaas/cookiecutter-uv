@@ -7,7 +7,7 @@ available:
 
 ```
 install              Install the uv environment and install the pre-commit hooks
-check                Lint and check code by running ruff, mypy and deptry.
+check                Lint and check code by running ruff, pyright, deptry.
 test                 Test the code with pytest
 build                Build wheel file using uv
 clean-build          clean build artifacts

@@ -37,7 +37,7 @@ dev = [
     "pytest-cookies>=0.6.1",
     "tox-uv>=1.11.3",
     "deptry>=0.22.0",
-    "mypy>=0.991",
+    "pyright>=1.1.352",
     "pytest-cov>=4.0.0",
     "ruff>=0.9.2",
     "mkdocs>=1.4.2",
@@ -64,16 +64,6 @@ skip_empty = true
 [tool.coverage.run]
 branch = true
 source = ["cookiecutter_uv"]
-
-[tool.mypy]
-files = ['cookiecutter_uv']
-disallow_untyped_defs = true
-disallow_any_unimported = true
-no_implicit_optional = true
-check_untyped_defs = true
-warn_return_any = true
-warn_unused_ignores = true
-show_error_codes = true
 
 [tool.deptry]
 extend_exclude = [

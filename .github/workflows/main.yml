@@ -52,7 +52,7 @@ jobs:
         run: uv run python -m pytest tests --cov --cov-config=pyproject.toml --cov-report=xml
 
       - name: Check typing
-        run: uv run mypy
+        run: uv run pyright
 
       - name: Upload coverage reports to Codecov with GitHub Action on Python 3.11 for Ubuntu
         uses: codecov/codecov-action@v3

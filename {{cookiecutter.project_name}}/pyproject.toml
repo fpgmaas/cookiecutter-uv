@@ -29,7 +29,7 @@ dev = [
     "pre-commit>=2.20.0",
     "tox-uv>=1.11.3",
     {% if cookiecutter.deptry == 'y' %}"deptry>=0.22.0",{% endif %}
-    "mypy>=0.991",
+    "pyright>=1.1.352",
     {% if cookiecutter.codecov == 'y' %}"pytest-cov>=4.0.0",{% endif %}
     "ruff>=0.9.2",
     {% if cookiecutter.mkdocs == 'y' %}"mkdocs>=1.4.2",
@@ -46,21 +46,25 @@ build-backend = "setuptools.build_meta"
 py-modules = ["{{cookiecutter.project_slug}}"]
 {%- endif %}
 
-[tool.mypy]
-files = [
+[tool.pyright]
+include = [
     {%- if cookiecutter.layout == "src" -%}
     "src"
     {%- else -%}
     "{{cookiecutter.project_slug}}"
     {%- endif -%}
 ]
-disallow_untyped_defs = true
-disallow_any_unimported = true
-no_implicit_optional = true
-check_untyped_defs = true
-warn_return_any = true
-warn_unused_ignores = true
-show_error_codes = true
+exclude = ["**/__pycache__", "build", "dist"]
+defineConstant = {}
+typeCheckingMode = "strict"
+useLibraryCodeForTypes = true
+reportMissingTypeStubs = "warning"
+reportUnknownMemberType = "warning"
+reportUnknownParameterType = "warning"
+reportUnknownVariableType = "warning"
+reportUnknownArgumentType = "warning"
+reportPrivateUsage = "warning"
+reportUntypedFunctionDecorator = "warning"
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

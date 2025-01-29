@@ -89,18 +89,16 @@ exclude = [
 
 [deptry](https://github.com/fpgmaas/deptry) is used to check the code for dependency issues, and it can be configured by adding a `[tool.deptry]` section in `pyproject.toml`. For more information, see [this section](https://deptry.com/usage/#configuration) documentation of deptry.
 
-# Prettier
+# Black
 
-[Prettier](https://prettier.io/) is used to format the markdown documentation, along with any json and yaml files.
-Its options can be configured in the included `.editorconfig` file or in greater detail by adding a `.prettierrc` file ([See Docs](https://prettier.io/docs/en/configuration)).
+[Black](https://black.readthedocs.io/) is used to format non-Python files like markdown, JSON, and YAML files.
+Its options can be configured in `pyproject.toml`:
 
-```yaml
-[*]
-max_line_length = 120
-
-[*.json]
-indent_style = space
-indent_size = 4
+```toml
+[tool.black]
+line-length = 120
+target-version = ["py39"]
+include = '\.pyi?$'
 ```
 
 ## Github Actions

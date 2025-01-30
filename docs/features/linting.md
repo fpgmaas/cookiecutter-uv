@@ -17,7 +17,7 @@ This command will run the following tools:
 ```
 [tool.ruff]
 target-version = "py39"
-line-length = 120
+line-length = 88
 fix = true
 select = [
     # flake8-2020
@@ -98,7 +98,7 @@ Its options can be configured in `pyproject.toml`:
 
 ```toml
 [tool.black]
-line-length = 120
+line-length = 88
 target-version = ["py39"]
 include = '\.pyi?$'
 ```

@@ -75,7 +75,7 @@ DEP002 = ["cookiecutter"]
 
 [tool.ruff]
 target-version = "py39"
-line-length = 120
+line-length = 88
 fix = true
 
 [tool.ruff.lint]

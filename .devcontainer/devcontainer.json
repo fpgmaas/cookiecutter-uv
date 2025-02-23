@@ -14,7 +14,19 @@
     // Configure tool-specific properties.
     "customizations": {
         "vscode": {
-            "extensions": ["ms-python.python", "editorconfig.editorconfig"],
+            "extensions": [
+                "vscode-icons-team.vscode-icons",
+                "ionutvmi.path-autocomplete",
+                "editorconfig.editorconfig",
+                "github.vscode-github-actions",
+                "formulahendry.code-runner",
+                "ms-python.python", 
+                "ms-python.debugpy",
+                "ms-toolsai.jupyter",
+                "charliermarsh.ruff",
+                "detachhead.basedpyright",
+                "njpwerner.autodocstring"
+            ],
             "settings": {
                 "python.testing.pytestArgs": ["tests"],
                 "python.testing.unittestEnabled": false,

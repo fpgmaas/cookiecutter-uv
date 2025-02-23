@@ -3,7 +3,6 @@ name: release-main
 on:
   release:
     types: [published]
-    branches: [main]
 
 jobs:
 {% if cookiecutter.publish_to_pypi == "y" %}
@@ -46,13 +45,12 @@ jobs:
           name: pyproject-toml
 
       - name: Build package
-        run: uvx --from build pyproject-build --installer uv
+        run: uv build
 
       - name: Publish package
-        run: uvx twine upload dist/*
+        run: uv publish
         env:
-          TWINE_USERNAME: __token__
-          TWINE_PASSWORD: {% raw %}${{ secrets.PYPI_TOKEN }}{% endraw %}
+          UV_PUBLISH_TOKEN: {% raw %}${{ secrets.PYPI_TOKEN }}{% endraw %}
 {% endif %}
 {%- if cookiecutter.mkdocs == "y" %}
   deploy-docs:

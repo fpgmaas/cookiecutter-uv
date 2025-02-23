@@ -1,24 +1,48 @@
 {
-    "author": "Florian Maas",
-    "email": "fpgmaas@gmail.com",
-    "author_github_handle": "fpgmaas",
-    "project_name": "example-project",
-    "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
-    "project_description": "This is a template repository for Python projects that use uv for their dependency management.",
-    "layout": ["flat", "src"],
-    "include_github_actions": ["y", "n"],
-    "publish_to_pypi": ["y", "n"],
-    "deptry": ["y", "n"],
-    "mkdocs": ["y", "n"],
-    "codecov": ["y", "n"],
-    "dockerfile": ["y", "n"],
-    "devcontainer": ["y", "n"],
-    "open_source_license": [
-        "MIT license",
-        "BSD license",
-        "ISC license",
-        "Apache Software License 2.0",
-        "GNU General Public License v3",
-        "Not open source"
-    ]
+  "author": "Florian Maas",
+  "author_github_handle": "fpgmaas",
+  "codecov": [
+    "y",
+    "n"
+  ],
+  "deptry": [
+    "y",
+    "n"
+  ],
+  "devcontainer": [
+    "y",
+    "n"
+  ],
+  "dockerfile": [
+    "y",
+    "n"
+  ],
+  "email": "fpgmaas@gmail.com",
+  "include_github_actions": [
+    "y",
+    "n"
+  ],
+  "layout": [
+    "flat",
+    "src"
+  ],
+  "mkdocs": [
+    "y",
+    "n"
+  ],
+  "open_source_license": [
+    "MIT license",
+    "BSD license",
+    "ISC license",
+    "Apache Software License 2.0",
+    "GNU General Public License v3",
+    "Not open source"
+  ],
+  "project_description": "This is a template repository for Python projects that use uv for their dependency management.",
+  "project_name": "example-project",
+  "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
+  "publish_to_pypi": [
+    "y",
+    "n"
+  ]
 }

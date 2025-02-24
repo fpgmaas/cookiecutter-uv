@@ -20,7 +20,7 @@
                 "editorconfig.editorconfig",
                 "github.vscode-github-actions",
                 "formulahendry.code-runner",
-                "ms-python.python", 
+                "ms-python.python",
                 "ms-python.debugpy",
                 "ms-toolsai.jupyter",
                 "charliermarsh.ruff",

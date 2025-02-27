@@ -89,20 +89,6 @@ exclude = [
 
 [deptry](https://github.com/fpgmaas/deptry) is used to check the code for dependency issues, and it can be configured by adding a `[tool.deptry]` section in `pyproject.toml`. For more information, see [this section](https://deptry.com/usage/#configuration) documentation of deptry.
 
-# Prettier
-
-[Prettier](https://prettier.io/) is used to format the markdown documentation, along with any json and yaml files.
-Its options can be configured in the included `.editorconfig` file or in greater detail by adding a `.prettierrc` file ([See Docs](https://prettier.io/docs/en/configuration)).
-
-```yaml
-[*]
-max_line_length = 120
-
-[*.json]
-indent_style = space
-indent_size = 4
-```
-
 ## Github Actions
 
 If `include_github_actions` is set to `"y"`, code formatting is checked

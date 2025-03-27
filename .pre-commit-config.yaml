@@ -25,3 +25,18 @@ repos:
       - id: ruff-format
         args: [--config=pyproject.toml]
         exclude: ^{{cookiecutter.project_name}}
+
+-   repo: https://github.com/python/mypy
+    rev: "v1.15.0"
+    hooks:
+    - id: mypy
+
+- repo: https://github.com/fpgmaas/deptry.git
+    rev: "0.23.0"
+    hooks:
+    - id: deptry
+
+- repo: https://gitlab.com/vojko.pribudic.foss/pre-commit-update
+    rev: "v0.6.1"
+    hooks:
+    - id: pre-commit-update

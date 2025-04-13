@@ -28,10 +28,10 @@ dev = [
     "pytest>=7.2.0",
     "pre-commit>=2.20.0",
     "tox-uv>=1.11.3",
-    {% if cookiecutter.deptry == 'y' %}"deptry>=0.22.0",{% endif %}
+    {% if cookiecutter.deptry == 'y' %}"deptry>=0.23.0",{% endif %}
     "mypy>=0.991",
     {% if cookiecutter.codecov == 'y' %}"pytest-cov>=4.0.0",{% endif %}
-    "ruff>=0.9.2",
+    "ruff>=0.11.5",
     {% if cookiecutter.mkdocs == 'y' %}"mkdocs>=1.4.2",
     "mkdocs-material>=8.5.10",
     "mkdocstrings[python]>=0.26.1",{% endif %}

@@ -1,7 +1,19 @@
 {
   "author": "Florian Maas",
+  "email": "fpgmaas@gmail.com",
   "author_github_handle": "fpgmaas",
-  "codecov": [
+  "project_name": "example-project",
+  "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
+  "project_description": "This is a template repository for Python projects that use uv for their dependency management.",
+  "layout": [
+    "flat",
+    "src"
+  ],
+  "include_github_actions": [
+    "y",
+    "n"
+  ],
+  "publish_to_pypi": [
     "y",
     "n"
   ],
@@ -9,7 +21,11 @@
     "y",
     "n"
   ],
-  "devcontainer": [
+  "mkdocs": [
+    "y",
+    "n"
+  ],
+  "codecov": [
     "y",
     "n"
   ],
@@ -17,16 +33,7 @@
     "y",
     "n"
   ],
-  "email": "fpgmaas@gmail.com",
-  "include_github_actions": [
-    "y",
-    "n"
-  ],
-  "layout": [
-    "flat",
-    "src"
-  ],
-  "mkdocs": [
+  "devcontainer": [
     "y",
     "n"
   ],
@@ -37,12 +44,5 @@
     "Apache Software License 2.0",
     "GNU General Public License v3",
     "Not open source"
-  ],
-  "project_description": "This is a template repository for Python projects that use uv for their dependency management.",
-  "project_name": "example-project",
-  "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
-  "publish_to_pypi": [
-    "y",
-    "n"
   ]
 }

@@ -10,7 +10,7 @@ repos:
         exclude: ^({{cookiecutter.project_name}}/\.devcontainer/devcontainer\.json|\.devcontainer/devcontainer\.json|{{cookiecutter.project_name}}/)$
       - id: pretty-format-json
         exclude: ^({{cookiecutter.project_name}}/\.devcontainer/devcontainer\.json|\.devcontainer/devcontainer\.json|{{cookiecutter.project_name}}/)$
-        args: [--autofix]
+        args: [--autofix, --no-sort-keys]
       - id: check-toml
         exclude: ^{{cookiecutter.project_name}}/
       - id: check-yaml

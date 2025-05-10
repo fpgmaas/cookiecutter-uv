@@ -19,7 +19,7 @@ nav:
       - Test coverage with codecov: features/codecov.md
       - Documentation with MkDocs: features/mkdocs.md
       - Compatibility testing with Tox: features/tox.md
-      - Containerization with Docker: features/docker.md
+      - Containerization with Docker or Podman: features/docker.md
       - Devcontainer with VSCode: features/devcontainer.md
   - Tutorial: tutorial.md
   - Prompt Arguments: prompt_arguments.md

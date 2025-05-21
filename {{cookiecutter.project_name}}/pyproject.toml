@@ -41,9 +41,12 @@ dev = [
 requires = ["hatchling"]
 build-backend = "hatchling.build"
 
-{% if cookiecutter.layout == "flat" -%}
-[tool.setuptools]
-py-modules = ["{{cookiecutter.project_slug}}"]
+{% if cookiecutter.layout == "src" -%}
+[tool.hatch.build.targets.wheel]
+packages = ["src/{{cookiecutter.project_slug}}"]
+{%- else -%}
+[tool.hatch.build.targets.wheel]
+packages = ["{{cookiecutter.project_slug}}"]
 {%- endif %}
 
 [tool.mypy]

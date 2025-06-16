@@ -1,5 +1,5 @@
+from collections.abc import Sequence
 from pathlib import Path
-from typing import Sequence
 
 import rich
 import rich.syntax
@@ -83,7 +83,8 @@ def enforce_tags(cfg: DictConfig, save_to_file: bool = False) -> None:
     """
     if not cfg.get("tags"):
         if "id" in HydraConfig().cfg.hydra.job:
-            raise ValueError("Specify tags before launching a multirun!")
+            error_msg = "Specify tags before launching a multirun!"
+            raise ValueError(error_msg)
 
         log.warning("No tags provided in config. Prompting user to input tags...")
         tags = Prompt.ask("Enter a list of comma separated tags", default="dev")

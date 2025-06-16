@@ -4,7 +4,7 @@ https://github.com/PyTorchLightning/pytorch-lightning/blob/master/tests/helpers/
 """
 
 import sys
-from typing import Any, Dict, Optional
+from typing import Any, Optional
 
 import pytest
 import torch
@@ -55,7 +55,7 @@ class RunIf:
         neptune: bool = False,
         comet: bool = False,
         mlflow: bool = False,
-        **kwargs: Dict[Any, Any],
+        **kwargs: dict[Any, Any],
     ) -> MarkDecorator:
         """Creates a new `@RunIf` `MarkDecorator` decorator.
 

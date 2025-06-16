@@ -1,10 +1,10 @@
 [project]
-name = "cookiecutter-uv"
+name = "cookiecutter-pytorch-lightning"
 version = "0.0.1"
 description = "A python cookiecutter application to create a new python project that uses uv to manage its dependencies."
-authors = [{ name = "Florian Maas", email = "fpgmaas@gmail.com" }]
+authors = [{ name = "Yang Liu", email = "liuyoungwork@gmail.com" }]
 readme = "README.md"
-keywords = ['cookiecutter', 'template', 'uv']
+keywords = ['cookiecutter', 'template', 'pytorch-lightning']
 requires-python = ">=3.9,<4.0"
 dependencies = [
   "cookiecutter>=2.1.1"
@@ -27,8 +27,8 @@ classifiers = [
 
 [project.urls]
 Repository = "https://github.com/foreverYoungGitHub/cookiecutter-pytorch-lightning"
-Documentation = "https://fpgmaas.github.io/cookiecutter-uv/"
-Homepage = "https://fpgmaas.github.io/cookiecutter-uv/"
+Documentation = "https://foreveryounggithub.github.io/cookiecutter-pytorch-lightning/"
+Homepage = "https://foreveryounggithub.github.io/cookiecutter-pytorch-lightning/"
 
 [dependency-groups]
 dev = [
@@ -50,10 +50,10 @@ requires = ["hatchling"]
 build-backend = "hatchling.build"
 
 [tool.setuptools]
-packages = ["cookiecutter_uv"]
+packages = ["cookiecutter_pytorch_lightning"]
 
 [tool.setuptools.package-data]
-"cookiecutter_uv" = ["*"]
+"cookiecutter_pytorch_lightning" = ["*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -63,10 +63,10 @@ skip_empty = true
 
 [tool.coverage.run]
 branch = true
-source = ["cookiecutter_uv"]
+source = ["cookiecutter_pytorch_lightning"]
 
 [tool.mypy]
-files = ['cookiecutter_uv']
+files = ['cookiecutter_pytorch_lightning']
 disallow_untyped_defs = true
 disallow_any_unimported = true
 no_implicit_optional = true

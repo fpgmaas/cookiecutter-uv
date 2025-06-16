@@ -197,7 +197,7 @@ wheels = [
 ]
 
 [[package]]
-name = "cookiecutter-uv"
+name = "cookiecutter-pytorch-lightning"
 version = "0.0.1"
 source = { editable = "." }
 dependencies = [

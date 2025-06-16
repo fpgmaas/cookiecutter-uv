@@ -11,15 +11,15 @@ bake-with-inputs: ## bake with inputs and overwrite if exists.
 	@uv run cookiecutter . --overwrite-if-exists
 
 .PHONY: bake-and-test-deploy
-bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test GH Actions
-	@rm -rf cookiecutter-uv-example || true
+bake-and-test-deploy: ## For quick publishing to cookiecutter-pytorch-lightning-example to test GH Actions
+	@rm -rf cookiecutter-pytorch-lightning-example || true
 	@uv run cookiecutter --no-input . --overwrite-if-exists \
-		author="Florian Maas" \
-		email="fpgmaas@gmail.com" \
-		github_author_handle=fpgmaas \
-		project_name=cookiecutter-uv-example \
-		project_slug=cookiecutter_uv_example
-	@cd cookiecutter-uv-example; uv sync && \
+		author="Yang Liu" \
+		email="liuyoungwork@gmail.com" \
+		github_author_handle=foreverYoungGitHub \
+		project_name=cookiecutter-pytorch-lightning-example \
+		project_slug=cookiecutter_pytorch_lightning_example
+	@cd cookiecutter-pytorch-lightning-example; uv sync && \
 		git init -b main && \
 		git add . && \
 		uv run pre-commit install && \

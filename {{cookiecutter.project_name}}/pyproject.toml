@@ -79,6 +79,20 @@ show_error_codes = true
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+addopts = [
+  "--color=yes",
+  "--durations=0",
+  "--strict-markers",
+  "--doctest-modules",
+]
+filterwarnings = [
+  "ignore::UserWarning",
+]
+log_cli = "True"
+markers = [
+  "slow: slow tests",
+]
+minversion = "6.0"
 
 [tool.ruff]
 target-version = "py39"

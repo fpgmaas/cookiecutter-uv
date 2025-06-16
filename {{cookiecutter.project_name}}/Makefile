@@ -21,7 +21,7 @@ check: ## Run code quality tools.
 test: ## Test the code with pytest
 	@echo "🚀 Testing code: Running pytest"
 {%- if cookiecutter.codecov == "y"%}
-	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=xml
+	@uv run python -m pytest --cov --cov-config=pyproject.toml --cov-report=term
 {%- else %}
 	@uv run python -m pytest --doctest-modules
 {%- endif%}

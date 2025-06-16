@@ -5,7 +5,7 @@ import pytest
 from hydra.core.hydra_config import HydraConfig
 from omegaconf import DictConfig, open_dict
 
-from {{cookiecutter.project_slug}}.train import train
+from {{cookiecutter.project_slug}}.scripts.train import train
 from tests.helpers.run_if import RunIf
 
 

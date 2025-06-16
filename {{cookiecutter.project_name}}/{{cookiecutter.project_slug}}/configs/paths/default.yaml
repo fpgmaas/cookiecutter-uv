@@ -1,7 +1,7 @@
 # path to root directory
 # this requires PROJECT_ROOT environment variable to exist
 # you can replace it with "." if you want the root to be the current working directory
-root_dir: ${oc.env:PROJECT_ROOT}
+root_dir: .
 
 # path to data directory
 data_dir: ${paths.root_dir}/data/

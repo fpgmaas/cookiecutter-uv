@@ -22,4 +22,4 @@ net:
   output_size: 10
 
 # compile model for faster training with pytorch 2.0
-compile: false
+torch_compile: false

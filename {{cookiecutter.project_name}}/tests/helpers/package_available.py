@@ -1,6 +1,6 @@
 import platform
+from importlib.metadata import PackageNotFoundError, version
 
-import pkg_resources
 from lightning.fabric.accelerators import TPUAccelerator
 
 
@@ -12,9 +12,11 @@ def _package_available(package_name: str) -> bool:
     :return: `True` if the package is available. `False` otherwise.
     """
     try:
-        return pkg_resources.require(package_name) is not None
-    except pkg_resources.DistributionNotFound:
+        version(package_name)
+    except PackageNotFoundError:
         return False
+    else:
+        return True
 
 
 _TPU_AVAILABLE = TPUAccelerator.is_available()

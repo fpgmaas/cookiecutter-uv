@@ -1,11 +1,11 @@
-site_name: cookiecutter-uv
-repo_url: https://github.com/fpgmaas/cookiecutter-uv
-site_url: https://fpgmaas.github.io/cookiecutter-uv
+site_name: cookiecutter-pytorch-lightning
+repo_url: https://github.com/foreverYoungGitHub/cookiecutter-pytorch-lightning
+site_url: https://foreveryounggithub.github.io/cookiecutter-pytorch-lightning
 site_description: A cookiecutter template for Python projects that use uv for its dependency management
-site_author: Florian Maas
+site_author: Yang Liu
 edit_uri: edit/main/docs/
-repo_name: fpgmaas/cookiecutter-uv
-copyright: Maintained by <a href="https://fpgmaas.com">Florian</a>.
+repo_name: foreverYoungGitHub/cookiecutter-pytorch-lightning
+copyright: Maintained by <a href="https://foreveryounggithub.github.io/">Yang</a>.
 
 nav:
   - Home: index.md
@@ -54,9 +54,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/fpgmaas/cookiecutter-uv
+      link: https://github.com/foreverYoungGitHub/cookiecutter-pytorch-lightning
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/cookiecutter-uv/
+      link: https://pypi.org/project/cookiecutter-pytorch-lightning/
 markdown_extensions:
   - toc:
       permalink: true

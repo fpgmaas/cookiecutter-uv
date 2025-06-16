@@ -28,7 +28,7 @@ bake-and-test-deploy: ## For quick publishing to cookiecutter-uv-example to test
 		uv run pre-commit run -a || true && \
 		git add . && \
 		git commit -m "init commit" && \
-		git remote add origin git@github.com:fpgmaas/cookiecutter-uv-example.git && \
+		git remote add origin git@github.com:foreverYoungGitHub/cookiecutter-pytorch-lightning-example.git && \
 		git push -f origin main
 
 

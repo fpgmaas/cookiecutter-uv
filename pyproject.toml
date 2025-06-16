@@ -26,7 +26,7 @@ classifiers = [
 
 
 [project.urls]
-Repository = "https://github.com/fpgmaas/cookiecutter-uv"
+Repository = "https://github.com/foreverYoungGitHub/cookiecutter-pytorch-lightning"
 Documentation = "https://fpgmaas.github.io/cookiecutter-uv/"
 Homepage = "https://fpgmaas.github.io/cookiecutter-uv/"
 

@@ -2,7 +2,7 @@
   "author": "Your Name",
   "email": "your.email@example.com",
   "author_github_handle": "your-github-handle",
-  "project_name": "cookiecutter-pytorch-lightning-example",
+  "project_name": "example-project",
   "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
   "project_description": "This is a template repository for Pytorch Lightning projects that use uv for their dependency management.",
   "layout": [

@@ -4,8 +4,8 @@ https://github.com/PyTorchLightning/pytorch-lightning/blob/master/tests/helpers/
 """
 
 import sys
-from typing import Any, Optional
 from importlib.metadata import version
+from typing import Any, Optional
 
 import pytest
 import torch

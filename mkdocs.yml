@@ -9,7 +9,7 @@ copyright: Maintained by <a href="https://foreveryounggithub.github.io/">Yang</a
 
 nav:
   - Home: index.md
-  - Features:
+  - Python Features:
       - CI/CD with Github Actions: features/cicd.md
       - Linting & code quality: features/linting.md
       - Makefile: features/makefile.md
@@ -21,6 +21,12 @@ nav:
       - Compatibility testing with Tox: features/tox.md
       - Containerization with Docker or Podman: features/docker.md
       - Devcontainer with VSCode: features/devcontainer.md
+  - Deep Learning Features:
+      - Setup environment: dl_features/environment.md
+      - Tutorials: dl_features/tutorials.md
+      - Superpowers: dl_features/superpowers.md
+      - Training: dl_features/training.md
+      - Evaluation: dl_features/evaluation.md
   - Tutorial: tutorial.md
   - Prompt Arguments: prompt_arguments.md
 plugins:

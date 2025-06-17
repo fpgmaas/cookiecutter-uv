@@ -56,6 +56,11 @@ simple as creating a new release release on Github. For more info,
 see
 [Publishing to PyPI](./features/publishing.md).
 
+**mypy**
+
+`"n"` or `"y"`. Adds [mypy](https://mypy.readthedocs.io/en/stable/) static type checking to the development dependencies and includes it in the `make check` command. **Note: It is strongly suggested to select "n" (no) for the pytorch lightning project**, as mypy can be challenging to configure properly with PyTorch Lightning projects and may cause unnecessary complexity during development.
+
+
 **deptry**
 
 `"y"` or `"n"`. Adds [deptry](https://fpgmaas.github.io/deptry/)

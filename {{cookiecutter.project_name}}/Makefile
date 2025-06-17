@@ -10,8 +10,10 @@ check: ## Run code quality tools.
 	@uv lock --locked
 	@echo "🚀 Linting code: Running pre-commit"
 	@uv run pre-commit run -a
+{%- if cookiecutter.mypy == 'y' %}
 	@echo "🚀 Static type checking: Running mypy"
 	@uv run mypy
+{%- endif %}
 {%- if cookiecutter.deptry == 'y' %}
 	@echo "🚀 Checking for obsolete dependencies: Running deptry"
 	@uv run deptry {% if cookiecutter.layout == "src" %}src{% else %}.{% endif %}

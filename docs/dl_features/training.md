@@ -16,7 +16,7 @@ This will use the default configuration defined in your project's config files.
 
 ### Training with Experiment Configs
 
-It is recommended to use predefined experiment configurations for reproducible training setups and run the experiment with 
+It is recommended to use predefined experiment configurations for reproducible training setups and run the experiment with
 `experiment=new-defined-one`.
 
 Experiment configs allow you to overwrite parameters from main config.<br>

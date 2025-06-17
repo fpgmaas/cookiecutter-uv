@@ -49,7 +49,7 @@ uv run python -c "import torch; print(f'CUDA available: {torch.cuda.is_available
 uv run python -m {{cookiecutter.project_slug}}.scripts.train
 ```
 
-Since it create the virtual environment using uv, please use uv run for all your python script like `uv run python` or just `source ./.venv/bin/activate` to enter the environment first and then run python command. 
+Since it create the virtual environment using uv, please use uv run for all your python script like `uv run python` or just `source ./.venv/bin/activate` to enter the environment first and then run python command.
 
 ### 4. Run the pre-commit hooks
 

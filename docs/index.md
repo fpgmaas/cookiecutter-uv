@@ -1,5 +1,5 @@
 <p align="center">
-  <img width="600" src="static/cookiecutter.svg">
+  Cookiecutter-Pytorch-Lightning <img width="50" src="static/cookiecutter.svg">
 </p style = "margin-bottom: 2rem;">
 <style>
   .md-typeset h1,
@@ -10,7 +10,15 @@
 
 ---
 
-This is a modern Cookiecutter template that can be used to initiate a Python project with all the necessary tools for development, testing, and deployment. It supports the following features:
+This modern Cookiecutter template provides all the necessary tools for deep learning development, training, testing, and deployment. It supports the following features:
+
+[Deep Learning related](features/train/)
+
+- [PyTorch](https://pytorch.org/) and [PyTorch Lightning](https://pytorchlightning.ai/) for deep learning framework
+- [Hydra](https://hydra.cc/) for modular experiment configuration
+- Optional experiment trackers: Tensorboard, W&B, Neptune, Comet, MLFlow and CSVLogger
+
+[Python related](features/cicd/)
 
 - [uv](https://docs.astral.sh/uv/) for dependency management
 - Supports both [src and flat layout](https://packaging.python.org/en/latest/discussions/src-layout-vs-flat-layout/).
@@ -44,8 +52,7 @@ cookiecutter https://github.com/foreverYoungGitHub/cookiecutter-pytorch-lightnin
 
 Follow the prompts to configure your project. Once completed, a new directory containing your project will be created. Then navigate into your newly created project directory and follow the instructions in the `README.md` to complete the setup of your project.
 
-### Acknowledgements
+## Acknowledgements
 
-This project is partially based on [Audrey
-Feldroy's](https://github.com/audreyfeldroy) great
-[cookiecutter-pypackage](https://github.com/audreyfeldroy/cookiecutter-pypackage).
+This project is partially based on [Florian Maas](https://github.com/fpgmaas)\'s great
+[cookiecutter-uv](https://github.com/fpgmaas/cookiecutter-uv) and [Lukas](https://github.com/ashleve)\'s great [lightning-hydra-template](https://github.com/ashleve/lightning-hydra-template) repository.

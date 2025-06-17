@@ -35,7 +35,27 @@ make install
 
 This will also generate your `uv.lock` file
 
-### 3. Run the pre-commit hooks
+### 3. Verification
+
+To verify your installation is working correctly:
+
+```bash
+# Run code quality checks
+make check
+
+# Run tests
+make test
+
+# Check if PyTorch can detect your GPU (if available)
+uv run python -c "import torch; print(f'CUDA available: {torch.cuda.is_available()}')"
+
+# Try your first train with
+uv run python -m {{cookiecutter.project_slug}}.scripts.train
+```
+
+Since it create the virtual environment using uv, please use uv run for all your python script like `uv run python` or just `source ./.venv/bin/activate` to enter the environment first and then run python command.
+
+### 4. Run the pre-commit hooks
 
 Initially, the CI/CD pipeline might be failing due to formatting issues. To resolve those run:
 
@@ -43,7 +63,7 @@ Initially, the CI/CD pipeline might be failing due to formatting issues. To reso
 uv run pre-commit run -a
 ```
 
-### 4. Commit the changes
+### 5. Commit the changes
 
 Lastly, commit the changes made by the two steps above to your repository.
 

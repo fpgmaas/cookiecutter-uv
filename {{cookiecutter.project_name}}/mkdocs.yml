@@ -9,6 +9,12 @@ copyright: Maintained by <a href="https://{{cookiecutter.author_github_handle}}.
 
 nav:
   - Home: index.md
+  - Features:
+      - Setup environment: features/environment.md
+      - Tutorials: features/tutorials.md
+      - Superpowers: features/superpowers.md
+      - Training: features/training.md
+      - Evaluation: features/evaluation.md
   - API reference: reference/
 plugins:
   - search

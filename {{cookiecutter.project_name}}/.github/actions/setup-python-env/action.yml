@@ -19,7 +19,7 @@ runs:
         python-version: {% raw %}${{ inputs.python-version }}{% endraw %}
 
     - name: Install uv
-      uses: astral-sh/setup-uv@v2
+      uses: astral-sh/setup-uv@v6
       with:
         version: {% raw %}${{ inputs.uv-version }}{% endraw %}
         enable-cache: 'true'

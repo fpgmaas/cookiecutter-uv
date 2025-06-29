@@ -70,7 +70,7 @@ def test_not_devcontainer(cookies, tmp_path):
 
 def test_cicd_contains_pypi_secrets(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "y"})
+        result = cookies.bake(extra_context={"publish_to_pypi": "y", "conventional_commits_release": "n"})
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
         assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "PYPI_TOKEN")
@@ -79,11 +79,28 @@ def test_cicd_contains_pypi_secrets(cookies, tmp_path):
 
 def test_dont_publish(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "n"})
+        result = cookies.bake(extra_context={
+            "publish_to_pypi": "n",
+            "conventional_commits_release": "n"
+        })
+
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
         assert not file_contains_text(
             f"{result.project_path}/.github/workflows/on-release-main.yml", "make build-and-publish"
+        )
+
+
+def test_use_conventional_commits_release(cookies, tmp_path):
+    with run_within_dir(tmp_path):
+        result = cookies.bake(extra_context={
+            "publish_to_pypi": "n",
+            "conventional_commits_release": "y"
+        })
+        assert result.exit_code == 0
+        assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
+        assert file_contains_text(
+            f"{result.project_path}/.github/workflows/on-release-main.yml", "steps.release.outputs.releases_created"
         )
 
 

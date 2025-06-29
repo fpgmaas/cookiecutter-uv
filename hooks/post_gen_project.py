@@ -27,8 +27,11 @@ if __name__ == "__main__":
     if "{{cookiecutter.include_github_actions}}" != "y":
         remove_dir(".github")
     else:
-        if "{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_to_pypi}}" == "n":
+        if ("{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_to_pypi}}" == "n") or ("{{cookiecutter.mkdocs}}" != "y" and  "{{cookiecutter.conventional_commits_release}}" == "n" and "{{cookiecutter.publish_to_pypi}}" == "n"):
             remove_file(".github/workflows/on-release-main.yml")
+
+    if "{{cookiecutter.conventional_commits_release}}" == "n":
+        remove_file(".github/release-drafter.yml")
 
     if "{{cookiecutter.mkdocs}}" != "y":
         remove_dir("docs")
@@ -91,3 +94,10 @@ if __name__ == "__main__":
         if os.path.isdir("src"):
             remove_dir("src")
         move_dir("{{cookiecutter.project_slug}}", os.path.join("src", "{{cookiecutter.project_slug}}"))
+
+    if "{{cookiecutter.labeler}}" == "y":
+        remove_file(".github/labels.yml")
+        remove_file(".github/workflows/labeler.yml")
+
+    if "{{cookiecutter.dependabot}}" != "y":
+        remove_file(".github/dependabot.yml")

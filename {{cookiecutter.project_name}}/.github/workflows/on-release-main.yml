@@ -5,7 +5,7 @@ on:
     types: [published]
 
 jobs:
-{% if cookiecutter.publish_to_pypi == "y" %}
+{%- if cookiecutter.publish_to_pypi == "y" and cookiecutter.conventional_commits_release == "n" %}
   set-version:
     runs-on: ubuntu-24.04
     steps:
@@ -51,6 +51,37 @@ jobs:
         run: uv publish
         env:
           UV_PUBLISH_TOKEN: {% raw %}${{ secrets.PYPI_TOKEN }}{% endraw %}
+{% endif %}
+{%- if cookiecutter.conventional_commits_release == "y" and cookiecutter.publish_to_pypi == "n" %}
+  publish:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: googleapis/release-please-action@v4
+        id: release
+        with:
+          release-type: python
+
+      - name: Check out
+        uses: actions/checkout@v4
+        if: {% raw %}${{ steps.release.outputs.releases_created }}{% endraw %}
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+        if: {% raw %}${{ steps.release.outputs.releases_created }}{% endraw %}
+
+      - name: Download updated pyproject.toml
+        uses: actions/download-artifact@v4
+        with:
+          name: pyproject-toml
+        if: {% raw %}${{ steps.release.outputs.releases_created }}{% endraw %}
+
+      - name: Build package
+        run: uv build
+        if: {% raw %}${{ steps.release.outputs.releases_created }}{% endraw %}
+
+      - name: Publish package distributions to PyPI
+        uses: pypa/gh-action-pypi-publish@release/v1
+        if: {% raw %}${{ steps.release.outputs.releases_created }}{% endraw %}
 {% endif %}
 {%- if cookiecutter.mkdocs == "y" %}
   deploy-docs:

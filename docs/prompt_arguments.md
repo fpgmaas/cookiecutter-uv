@@ -56,6 +56,13 @@ simple as creating a new release release on Github. For more info,
 see
 [Publishing to PyPI](./features/publishing.md).
 
+**conventional_commits_release**
+
+`"y"` or `"n"`. Adds functionality to Github workflows
+to create releases based on conventional commit. For more info,
+see
+[Conventional Commits](https://www.conventionalcommits.org).
+
 **deptry**
 
 `"y"` or `"n"`. Adds [deptry](https://fpgmaas.github.io/deptry/)

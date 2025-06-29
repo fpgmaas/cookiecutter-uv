@@ -1,0 +1,34 @@
+name: Labeler
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.github/labels.yml'
+      - '.github/workflows/labels.yml'
+  pull_request:
+    paths:
+      - '.github/labels.yml'
+      - '.github/workflows/labels.yml'
+
+jobs:
+  labeler:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      issues: write
+    steps:
+      -
+        name: Checkout
+        uses: actions/checkout@v4
+      -
+        name: Run Labeler
+        uses: crazy-max/ghaction-github-labeler@v5
+        with:
+          {% raw %}github-token: ${{ secrets.GITHUB_TOKEN }}{% endraw %}
+          yaml-file: .github/labels.yml
+          {% raw %}dry-run: ${{ github.event_name == 'pull_request' }}{% endraw %}
+          exclude: |
+            help*
+            *issue

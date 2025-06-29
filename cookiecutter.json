@@ -1,4 +1,10 @@
 {
+  "_copy_without_render": [
+        ".github/ISSUE_TEMPLATE/*.md",
+        ".github/dependabot.yml",
+        ".github/pull_request_template.yml",
+        ".github/release-drafter.yml"
+  ],
   "author": "Florian Maas",
   "email": "fpgmaas@gmail.com",
   "author_github_handle": "fpgmaas",
@@ -14,6 +20,18 @@
     "n"
   ],
   "publish_to_pypi": [
+    "y",
+    "n"
+  ],
+  "conventional_commits_release": [
+    "y",
+    "n"
+  ],
+  "labeler": [
+    "y",
+    "n"
+  ],
+  "dependabot": [
     "y",
     "n"
   ],
@@ -44,5 +62,12 @@
     "Apache Software License 2.0",
     "GNU General Public License v3",
     "Not open source"
-  ]
+  ],
+  "__prompts__": {
+        "include_github_actions": "Want to include Github Actions",
+        "publish_to_pypi": "Publish to pypi using tagged releases (not conventional commit)",
+        "conventional_commits_release": "Publish to pypi using release-please and conventional commits",
+        "labeler": "Want to label PRs automatically",
+        "dependabot": "Want to include dependabot"
+    }
 }

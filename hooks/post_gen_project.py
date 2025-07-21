@@ -27,7 +27,10 @@ if __name__ == "__main__":
     if "{{cookiecutter.include_github_actions}}" != "y":
         remove_dir(".github")
     else:
-        if "{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_python_package}}" not in ["pypi", "azure_artifacts"]:
+        if "{{cookiecutter.mkdocs}}" != "y" and "{{cookiecutter.publish_python_package}}" not in [
+            "pypi",
+            "azure_artifacts",
+        ]:
             remove_file(".github/workflows/on-release-main.yml")
 
     if "{{cookiecutter.mkdocs}}" != "y":

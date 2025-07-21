@@ -4,7 +4,7 @@
 
 Depending on `publish_python_package` value, `on-release-main.yml` workflow publishes the code to different locations whenever a [new release](./cicd.md#how-to-trigger-a-release) is made.
 - pypi
-  - [PyPI](https://pypi.org) 
+  - [PyPI](https://pypi.org)
 - azure_artifacts
   - [Azure Artifacts](https://azure.microsoft.com/en-us/products/devops/artifacts)
 - None

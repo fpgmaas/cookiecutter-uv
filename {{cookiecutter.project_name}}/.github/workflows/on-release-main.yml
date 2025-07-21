@@ -90,11 +90,6 @@ jobs:
         env:
           UV_PUBLISH_USERNAME: {% raw %}${{ secrets.UV_PUBLISH_USERNAME }}{% endraw %}
           UV_PUBLISH_PASSWORD: {% raw %}${{ secrets.UV_PUBLISH_PASSWORD }}{% endraw %}
-
-      - name: Publish package
-        run: uv publish
-        env:
-          UV_PUBLISH_TOKEN: {% raw %}${{ secrets.PYPI_TOKEN }}{% endraw %}
 {% endif %}
 {%- if cookiecutter.mkdocs == "y" %}
   deploy-docs:

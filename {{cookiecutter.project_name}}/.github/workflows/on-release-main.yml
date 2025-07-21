@@ -8,8 +8,13 @@ jobs:
 {% if cookiecutter.publish_to_pypi == "y" %}
   set-version:
     runs-on: ubuntu-24.04
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push changes
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Export tag
         id: vars
@@ -28,6 +33,13 @@ jobs:
         with:
           name: pyproject-toml
           path: pyproject.toml
+
+      - name: Commit pyproject.toml version update
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: {% raw %}"Update version to ${{ steps.vars.outputs.tag }}"{% endraw %}
+          file_pattern: pyproject.toml
+        if: {% raw %}${{ github.event_name == 'release' }}{% endraw %}
 
   publish:
     runs-on: ubuntu-latest

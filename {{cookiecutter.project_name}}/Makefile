@@ -52,8 +52,7 @@ build-and-publish: build publish ## Build and publish.
 .PHONY: publish
 publish: ## Publish a release to Azure Artifacts.
 	@echo "🚀 Publishing to Azure Artifacts."
-	@echo "Make sure AZURE_DEVOPS_ORG, AZURE_DEVOPS_PROJECT, and AZURE_DEVOPS_FEED environment variables are set."
-	@uvx twine upload --repository-url https://pkgs.dev.azure.com/$${AZURE_DEVOPS_ORG}/$${AZURE_DEVOPS_PROJECT}/_packaging/$${AZURE_DEVOPS_FEED}/pypi/upload/ dist/*
+	@uv publish --index private-registry
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.

@@ -2,9 +2,13 @@
 
 ## Releasing from Github
 
-When `publish_to_pypi` is set to `"y"`, the
-`on-release-main.yml` workflow publishes the code to
-[PyPI](https://pypi.org) whenever a [new release](./cicd.md#how-to-trigger-a-release) is made.
+Depending on `publish_python_package` value, `on-release-main.yml` workflow publishes the code to different locations whenever a [new release](./cicd.md#how-to-trigger-a-release) is made.
+- pypi
+  - [PyPI](https://pypi.org) 
+- azure_artifacts
+  - [Azure Artifacts](https://azure.microsoft.com/en-us/products/devops/artifacts)
+- None
+  - Doesn't publish
 
 Before you can succesfully publish your project from the release workflow, you need to add some secrets to your github repository so
 they can be used as environment variables.

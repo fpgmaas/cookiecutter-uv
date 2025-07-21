@@ -48,9 +48,9 @@ A short description of your project.
 workflows to setup the environment and run code formatting checks
 and unittests.
 
-**publish_to_pypi**
+**publish_python_package**
 
-`"y"` or `"n"`. Adds functionality to the
+`"pypi"`, `"azure_artifacts"` or `"None"`. Adds functionality to the
 `Makefile` and Github workflows to make publishing your code as
 simple as creating a new release release on Github. For more info,
 see

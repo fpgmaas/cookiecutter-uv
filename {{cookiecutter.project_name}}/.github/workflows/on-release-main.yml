@@ -98,7 +98,7 @@ jobs:
 {% endif %}
 {%- if cookiecutter.mkdocs == "y" %}
   deploy-docs:
-    {%- if cookiecutter.publish_to_pypi == "y" %}
+    {%- if cookiecutter.publish_python_package in ["pypi", "azure_artifacts"] %}
     needs: publish
     {%- endif %}
     runs-on: ubuntu-latest

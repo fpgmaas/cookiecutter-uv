@@ -7,7 +7,7 @@ to test compatibility with multiple Python versions. You can run `tox` locally:
 uv run tox
 ```
 
-By default, the project is tested with Python `3.8`, `3.9`, and `3.10`, `3.11` and `3.12`.
+By default, the project is tested with Python `3.9`, `3.10`, `3.11`, `3.12` and `3.13`.
 
 Testing for compatibility with different Python versions is also done automatically in the CI/CD pipeline on every pull request, merge
 to main, and on each release.

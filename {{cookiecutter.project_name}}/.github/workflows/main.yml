@@ -47,7 +47,7 @@ jobs:
         run: uv run python -m pytest tests {% if cookiecutter.codecov == "y" %}--cov --cov-config=pyproject.toml --cov-report=xml{%- endif %}
 
       - name: Check typing
-        run: uv run mypy
+        run: uv run {% if cookiecutter.type_checker == "mypy" %}mypy{% else %}ty check{% endif %}
 
 {% if cookiecutter.codecov == "y" %}
       - name: Upload coverage reports to Codecov with GitHub Action on Python 3.11

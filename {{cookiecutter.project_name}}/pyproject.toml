@@ -29,7 +29,11 @@ dev = [
     "pre-commit>=2.20.0",
     "tox-uv>=1.11.3",
     {% if cookiecutter.deptry == 'y' %}"deptry>=0.23.0",{% endif %}
-    "mypy>=0.991",
+    {% if cookiecutter.type_checker == "mypy" -%}
+        "mypy>=0.991",
+    {%- elif cookiecutter.type_checker == "ty" -%}
+        "ty>=0.0.1a16",
+    {%- endif %}
     {% if cookiecutter.codecov == 'y' %}"pytest-cov>=4.0.0",{% endif %}
     "ruff>=0.11.5",
     {% if cookiecutter.mkdocs == 'y' %}"mkdocs>=1.4.2",
@@ -49,6 +53,7 @@ packages = ["src/{{cookiecutter.project_slug}}"]
 packages = ["{{cookiecutter.project_slug}}"]
 {%- endif %}
 
+{% if cookiecutter.type_checker == "mypy" -%}
 [tool.mypy]
 files = [
     {%- if cookiecutter.layout == "src" -%}
@@ -64,6 +69,11 @@ check_untyped_defs = true
 warn_return_any = true
 warn_unused_ignores = true
 show_error_codes = true
+{%- else -%}
+[tool.ty.environment]
+python = "./.venv"
+python-version = "3.9"
+{%- endif %}
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
@@ -119,7 +129,7 @@ ignore = [
 [tool.ruff.format]
 preview = true
 
-{% if cookiecutter.codecov == "y"-%}
+{% if cookiecutter.codecov == "y" -%}
 [tool.coverage.report]
 skip_empty = true
 

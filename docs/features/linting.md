@@ -67,7 +67,7 @@ preview = true
 
 # mypy
 
-[mypy](https://mypy.readthedocs.io/en/stable/) is used for static type checking, and it's configuration and can be edited in `pyproject.toml`.
+[mypy](https://mypy.readthedocs.io/en/stable/) is used for static type checking, and it's configuration can be edited in `pyproject.toml`.
 
 ```toml
 [tool.mypy]
@@ -83,6 +83,16 @@ exclude = [
     '{{cookiecutter.project_name}}',
     'tests'
 ]
+```
+
+# ty
+
+[ty](https://docs.astral.sh/ty/) is an extremely fast type checker (and language server) that can be used instead of mypy, and it's configuration can be edited in `pyproject.toml`.
+
+```toml
+[tool.ty.environment]
+python = "./.venv"
+python-version = "3.9"
 ```
 
 # deptry

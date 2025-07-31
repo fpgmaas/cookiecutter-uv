@@ -65,7 +65,7 @@ preview = true
 "tests/*" = ["S101"]
 ```
 
-# mypy
+## mypy
 
 [mypy](https://mypy.readthedocs.io/en/stable/) is used for static type checking, and it's configuration can be edited in `pyproject.toml`.
 
@@ -85,7 +85,7 @@ exclude = [
 ]
 ```
 
-# ty
+## ty
 
 [ty](https://docs.astral.sh/ty/) is an extremely fast type checker (and language server) that can be used instead of mypy, and it's configuration can be edited in `pyproject.toml`.
 
@@ -95,7 +95,7 @@ python = "./.venv"
 python-version = "3.9"
 ```
 
-# deptry
+## deptry
 
 [deptry](https://github.com/fpgmaas/deptry) is used to check the code for dependency issues, and it can be configured by adding a `[tool.deptry]` section in `pyproject.toml`. For more information, see [this section](https://deptry.com/usage/#configuration) documentation of deptry.
 

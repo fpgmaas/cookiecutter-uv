@@ -70,7 +70,9 @@ uv sync
 
 4. Install pre-commit to run linters/formatters at commit time:
 
-   uv run pre-commit install
+```bash
+uv run pre-commit install
+```
 
 5. Create a branch for local development:
 

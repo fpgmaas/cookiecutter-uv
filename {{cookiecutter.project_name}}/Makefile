@@ -36,12 +36,23 @@ clean-build: ## Clean build artifacts
 	@echo "🚀 Removing build artifacts"
 	@uv run python -c "import shutil; import os; shutil.rmtree('dist') if os.path.exists('dist') else None"
 
-{%- if cookiecutter.publish_to_pypi == "y"%}
+{%- if cookiecutter.publish_python_package == "pypi"%}
 
 .PHONY: publish
 publish: ## Publish a release to PyPI.
 	@echo "🚀 Publishing."
 	@uvx twine upload --repository-url https://upload.pypi.org/legacy/ dist/*
+
+.PHONY: build-and-publish
+build-and-publish: build publish ## Build and publish.
+{%- endif%}
+
+{%- if cookiecutter.publish_python_package == "azure_artifacts"%}
+
+.PHONY: publish
+publish: ## Publish a release to Azure Artifacts.
+	@echo "🚀 Publishing to Azure Artifacts."
+	@uv publish --index private-registry
 
 .PHONY: build-and-publish
 build-and-publish: build publish ## Build and publish.

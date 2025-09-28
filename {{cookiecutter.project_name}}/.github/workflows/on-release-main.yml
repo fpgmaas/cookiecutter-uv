@@ -40,7 +40,7 @@ jobs:
         uses: ./.github/actions/setup-python-env
 
       - name: Download updated pyproject.toml
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: pyproject-toml
 

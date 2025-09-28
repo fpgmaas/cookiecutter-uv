@@ -3,7 +3,7 @@
 {
     "name": "Cookiecutter uv",
     // Or use a Dockerfile or Docker Compose file. More info: https://containers.dev/guide/dockerfile
-    "image": "mcr.microsoft.com/devcontainers/python:1-3.11-bullseye",
+    "image": "mcr.microsoft.com/devcontainers/python:2-3.11-bullseye",
     "features": {
         "ghcr.io/devcontainers-extra/features/cookiecutter:2": {}
     },

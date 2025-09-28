@@ -9,7 +9,7 @@ jobs:
   set-version:
     runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v5
 
       - name: Export tag
         id: vars
@@ -34,13 +34,13 @@ jobs:
     needs: [set-version]
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env
 
       - name: Download updated pyproject.toml
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v5
         with:
           name: pyproject-toml
 
@@ -60,7 +60,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Check out
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Set up the environment
         uses: ./.github/actions/setup-python-env

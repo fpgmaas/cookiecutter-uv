@@ -17,9 +17,9 @@ repos:
         exclude: ^{{cookiecutter.project_name}}/
 
   - repo: https://github.com/astral-sh/ruff-pre-commit
-    rev: "v0.11.5"
+    rev: "v0.12.7"
     hooks:
-      - id: ruff
+      - id: ruff-check
         args: [--exit-non-zero-on-fix, --config=pyproject.toml]
         exclude: ^{{cookiecutter.project_name}}
       - id: ruff-format

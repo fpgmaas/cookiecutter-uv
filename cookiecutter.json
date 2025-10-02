@@ -29,6 +29,10 @@
     "y",
     "n"
   ],
+  "type_checker": [
+    "mypy",
+    "ty"
+  ],
   "open_source_license": [
     "MIT license",
     "BSD license",

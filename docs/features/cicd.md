@@ -32,7 +32,7 @@ see [Publishing to PyPI](./publishing.md) and [Documentation with MkDocs](./mkdo
 Additionally, all workflows check for compatibility with multiple Python
 versions if `tox` is set to `"y"`.
 
-# How to trigger a release?
+## How to trigger a release?
 
 To trigger a new release, navigate to your repository on GitHub, click `Releases` on the right, and then select `Draft
 a new release`. If you fail to find the button, you could also directly visit

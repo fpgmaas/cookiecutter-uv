@@ -1,10 +1,10 @@
 {
-  "author": "Florian Maas",
-  "email": "fpgmaas@gmail.com",
-  "author_github_handle": "fpgmaas",
+  "author": "Vince Faller",
+  "email": "vdfaller@gmail.com",
+  "author_github_handle": "VDFaller",
   "project_name": "example-project",
   "project_slug": "{{cookiecutter.project_name|lower|replace('-', '_')}}",
-  "project_description": "This is a template repository for Python projects that use uv for their dependency management.",
+  "project_description": "A DBT core/fusion cookiecutter/cruft template.",
   "layout": [
     "flat",
     "src"
@@ -14,14 +14,6 @@
     "n"
   ],
   "publish_to_pypi": [
-    "y",
-    "n"
-  ],
-  "deptry": [
-    "y",
-    "n"
-  ],
-  "mkdocs": [
     "y",
     "n"
   ],

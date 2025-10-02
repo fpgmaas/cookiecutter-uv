@@ -19,8 +19,8 @@
                 "python.testing.pytestArgs": ["tests"],
                 "python.testing.unittestEnabled": false,
                 "python.testing.pytestEnabled": true,
-                "python.defaultInterpreterPath": "/workspaces/cookiecutter-uv/.venv/bin/python",
-                "python.testing.pytestPath": "/workspaces/cookiecutter-uv/.venv/bin/pytest"
+                "python.defaultInterpreterPath": "/workspaces/cookiecutter-dbt/.venv/bin/python",
+                "python.testing.pytestPath": "/workspaces/cookiecutter-dbt/.venv/bin/pytest"
             }
         }
     }

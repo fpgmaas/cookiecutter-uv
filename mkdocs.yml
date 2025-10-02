@@ -1,10 +1,10 @@
-site_name: cookiecutter-uv
-repo_url: https://github.com/fpgmaas/cookiecutter-uv
-site_url: https://fpgmaas.github.io/cookiecutter-uv
+site_name: cookiecutter-dbt
+repo_url: https://github.com/VDFaller/cookiecutter-dbt
+site_url: https://VDFaller.github.io/cookiecutter-dbt
 site_description: A cookiecutter template for Python projects that use uv for its dependency management
-site_author: Florian Maas
+site_author: Vince Faller
 edit_uri: edit/main/docs/
-repo_name: fpgmaas/cookiecutter-uv
+repo_name: fpgmaas/cookiecutter-dbt
 copyright: Maintained by <a href="https://fpgmaas.com">Florian</a>.
 
 nav:
@@ -54,9 +54,9 @@ theme:
 extra:
   social:
     - icon: fontawesome/brands/github
-      link: https://github.com/fpgmaas/cookiecutter-uv
+      link: https://github.com/VDFaller/cookiecutter-dbt
     - icon: fontawesome/brands/python
-      link: https://pypi.org/project/cookiecutter-uv/
+      link: https://pypi.org/project/cookiecutter-dbt/
 markdown_extensions:
   - toc:
       permalink: true

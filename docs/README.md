@@ -74,4 +74,4 @@ For more details, see [here](https://fpgmaas.github.io/cookiecutter-dbt/features
 
 ---
 
-Repository initiated with [VDFaller/cookiecutter-dbt](https://github.com/VDFaller/cookiecutter-dbt).
+Repository initiated with [fpgmaas/cookiecutter-dbt](https://github.com/fpgmaas/cookiecutter-dbt).

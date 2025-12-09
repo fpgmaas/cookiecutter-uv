@@ -2,25 +2,7 @@
 
 from __future__ import annotations
 
-from pathlib import Path
-
 from cookiecutter_uv.cicd.fetchers import GitHubRepo
-
-# Repository root (relative to this file)
-REPO_ROOT = Path(__file__).parent.parent.parent
-
-# Files to update
-PYPROJECT_FILES = [
-    REPO_ROOT / "pyproject.toml",
-    REPO_ROOT / "{{cookiecutter.project_name}}" / "pyproject.toml",
-]
-
-ACTION_YML_FILES = [
-    REPO_ROOT / ".github" / "actions" / "setup-python-env" / "action.yml",
-    REPO_ROOT / "{{cookiecutter.project_name}}" / ".github" / "actions" / "setup-python-env" / "action.yml",
-]
-
-PRECOMMIT_CONFIG = REPO_ROOT / ".pre-commit-config.yaml"
 
 # PyPI packages to track
 PYPI_PACKAGES = [

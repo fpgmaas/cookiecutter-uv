@@ -7,11 +7,8 @@ import re
 from pathlib import Path
 
 from cookiecutter_uv.cicd.config import (
-    ACTION_YML_FILES,
-    PRECOMMIT_CONFIG,
     PRECOMMIT_HOOKS,
     PYPI_PACKAGES,
-    PYPROJECT_FILES,
     UV_REPO,
 )
 from cookiecutter_uv.cicd.fetchers import get_github_release, get_github_tag, get_pypi_version
@@ -21,6 +18,9 @@ logger = logging.getLogger(__name__)
 
 class PyprojectTomlUpdater:
     """Updates package versions in pyproject.toml files."""
+
+    def __init__(self, files: list[Path]) -> None:
+        self.files = files
 
     def _update_file(self, filepath: Path, package: str, version: str) -> bool:
         """Update a single package in a pyproject.toml file. Returns True if updated."""
@@ -48,7 +48,7 @@ class PyprojectTomlUpdater:
                 logger.warning("Failed to fetch version for %s", package)
                 continue
 
-            for filepath in PYPROJECT_FILES:
+            for filepath in self.files:
                 if not filepath.exists():
                     continue
 
@@ -56,10 +56,10 @@ class PyprojectTomlUpdater:
                     content = filepath.read_text()
                     pattern = rf'"{re.escape(package)}(\[[^\]]*\])?>=([^"]+)"'
                     if re.search(pattern, content):
-                        logger.info("%s: %s -> %s", filepath.name, package, version)
+                        logger.info("%s: %s -> %s", filepath, package, version)
                         update_count += 1
                 elif self._update_file(filepath, package, version):
-                    logger.info("%s: %s -> %s", filepath.name, package, version)
+                    logger.info("%s: %s -> %s", filepath, package, version)
                     update_count += 1
 
         return update_count
@@ -67,6 +67,9 @@ class PyprojectTomlUpdater:
 
 class ActionYmlUpdater:
     """Updates uv version in action.yml files."""
+
+    def __init__(self, files: list[Path]) -> None:
+        self.files = files
 
     def _update_file(self, filepath: Path, version: str, pattern: str) -> bool:
         """Update uv version in an action.yml file. Returns True if updated."""
@@ -95,17 +98,17 @@ class ActionYmlUpdater:
             r'[0-9]+\.[0-9]+\.[0-9]+(")'
         )
 
-        for filepath in ACTION_YML_FILES:
+        for filepath in self.files:
             if not filepath.exists():
                 continue
 
             if dry_run:
                 content = filepath.read_text()
                 if re.search(pattern, content):
-                    logger.info("%s: uv -> %s", filepath.name, version)
+                    logger.info("%s: uv -> %s", filepath, version)
                     update_count += 1
             elif self._update_file(filepath, version, pattern):
-                logger.info("%s: uv -> %s", filepath.name, version)
+                logger.info("%s: uv -> %s", filepath, version)
                 update_count += 1
 
         return update_count
@@ -113,6 +116,9 @@ class ActionYmlUpdater:
 
 class PreCommitConfigUpdater:
     """Updates hook revisions in .pre-commit-config.yaml."""
+
+    def __init__(self, config_file: Path) -> None:
+        self.config_file = config_file
 
     def _update_hook(self, filepath: Path, content: str, repo_url: str, version: str) -> tuple[str, bool]:
         """Update a single hook in pre-commit config. Returns (new_content, updated)."""
@@ -130,11 +136,11 @@ class PreCommitConfigUpdater:
 
     def update(self, dry_run: bool = False) -> int:
         """Update pre-commit config. Returns count of updates."""
-        if not PRECOMMIT_CONFIG.exists():
+        if not self.config_file.exists():
             return 0
 
         update_count = 0
-        content = PRECOMMIT_CONFIG.read_text()
+        content = self.config_file.read_text()
 
         for repo_url, github_repo in PRECOMMIT_HOOKS:
             version = get_github_tag(github_repo)
@@ -147,12 +153,12 @@ class PreCommitConfigUpdater:
             if dry_run:
                 pattern = rf'(- repo: {re.escape(repo_url)}\s*\n\s*rev:\s*")[^"]+(")'
                 if re.search(pattern, content):
-                    logger.info("%s: %s -> v%s", PRECOMMIT_CONFIG.name, hook_name, version)
+                    logger.info("%s: %s -> v%s", self.config_file, hook_name, version)
                     update_count += 1
             else:
-                content, updated = self._update_hook(PRECOMMIT_CONFIG, content, repo_url, version)
+                content, updated = self._update_hook(self.config_file, content, repo_url, version)
                 if updated:
-                    logger.info("%s: %s -> v%s", PRECOMMIT_CONFIG.name, hook_name, version)
+                    logger.info("%s: %s -> v%s", self.config_file, hook_name, version)
                     update_count += 1
 
         return update_count

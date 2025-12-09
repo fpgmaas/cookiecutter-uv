@@ -68,11 +68,10 @@ class TestFetchers:
 class TestPyprojectTomlUpdater:
     def test_updates_package_version(self, temp_pyproject: Path) -> None:
         with (
-            patch("cookiecutter_uv.cicd.updaters.PYPROJECT_FILES", [temp_pyproject]),
             patch("cookiecutter_uv.cicd.updaters.PYPI_PACKAGES", ["pytest"]),
             patch("cookiecutter_uv.cicd.updaters.get_pypi_version", return_value="8.0.0"),
         ):
-            count = PyprojectTomlUpdater().update()
+            count = PyprojectTomlUpdater([temp_pyproject]).update()
 
         assert count == 1
         content = temp_pyproject.read_text()
@@ -80,11 +79,10 @@ class TestPyprojectTomlUpdater:
 
     def test_updates_package_with_extras(self, temp_pyproject: Path) -> None:
         with (
-            patch("cookiecutter_uv.cicd.updaters.PYPROJECT_FILES", [temp_pyproject]),
             patch("cookiecutter_uv.cicd.updaters.PYPI_PACKAGES", ["mkdocstrings"]),
             patch("cookiecutter_uv.cicd.updaters.get_pypi_version", return_value="0.30.0"),
         ):
-            count = PyprojectTomlUpdater().update()
+            count = PyprojectTomlUpdater([temp_pyproject]).update()
 
         assert count == 1
         content = temp_pyproject.read_text()
@@ -93,22 +91,18 @@ class TestPyprojectTomlUpdater:
     def test_dry_run_does_not_modify(self, temp_pyproject: Path) -> None:
         original = temp_pyproject.read_text()
         with (
-            patch("cookiecutter_uv.cicd.updaters.PYPROJECT_FILES", [temp_pyproject]),
             patch("cookiecutter_uv.cicd.updaters.PYPI_PACKAGES", ["pytest"]),
             patch("cookiecutter_uv.cicd.updaters.get_pypi_version", return_value="8.0.0"),
         ):
-            PyprojectTomlUpdater().update(dry_run=True)
+            PyprojectTomlUpdater([temp_pyproject]).update(dry_run=True)
 
         assert temp_pyproject.read_text() == original
 
 
 class TestActionYmlUpdater:
     def test_updates_uv_version(self, temp_action_yml: Path) -> None:
-        with (
-            patch("cookiecutter_uv.cicd.updaters.ACTION_YML_FILES", [temp_action_yml]),
-            patch("cookiecutter_uv.cicd.updaters.get_github_release", return_value="0.9.7"),
-        ):
-            count = ActionYmlUpdater().update()
+        with patch("cookiecutter_uv.cicd.updaters.get_github_release", return_value="0.9.7"):
+            count = ActionYmlUpdater([temp_action_yml]).update()
 
         assert count == 1
         content = temp_action_yml.read_text()
@@ -121,11 +115,10 @@ class TestPreCommitConfigUpdater:
             ("https://github.com/pre-commit/pre-commit-hooks", GitHubRepo("pre-commit", "pre-commit-hooks")),
         ]
         with (
-            patch("cookiecutter_uv.cicd.updaters.PRECOMMIT_CONFIG", temp_precommit),
             patch("cookiecutter_uv.cicd.updaters.PRECOMMIT_HOOKS", hooks),
             patch("cookiecutter_uv.cicd.updaters.get_github_tag", return_value="5.0.0"),
         ):
-            count = PreCommitConfigUpdater().update()
+            count = PreCommitConfigUpdater(temp_precommit).update()
 
         assert count == 1
         content = temp_precommit.read_text()

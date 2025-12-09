@@ -11,8 +11,9 @@ from cookiecutter_uv.cicd.config import (
     PRECOMMIT_HOOKS,
     PYPI_PACKAGES,
     PYPROJECT_FILES,
+    UV_REPO,
 )
-from cookiecutter_uv.cicd.fetchers import VersionFetcher
+from cookiecutter_uv.cicd.fetchers import get_github_release, get_github_tag, get_pypi_version
 
 logger = logging.getLogger(__name__)
 
@@ -20,22 +21,17 @@ logger = logging.getLogger(__name__)
 class PyprojectTomlUpdater:
     """Updates package versions in pyproject.toml files."""
 
-    def __init__(self, fetcher: VersionFetcher | None = None) -> None:
-        self.fetcher = fetcher or VersionFetcher()
-        self.files = PYPROJECT_FILES
-        self.packages = PYPI_PACKAGES
-
     def update(self, dry_run: bool = False) -> int:
         """Update all pyproject.toml files. Returns count of updates."""
         update_count = 0
 
-        for package in self.packages:
-            version = self.fetcher.get_pypi_version(package)
+        for package in PYPI_PACKAGES:
+            version = get_pypi_version(package)
             if not version:
                 logger.warning("Failed to fetch version for %s", package)
                 continue
 
-            for filepath in self.files:
+            for filepath in PYPROJECT_FILES:
                 if not filepath.exists():
                     continue
 
@@ -60,13 +56,9 @@ class PyprojectTomlUpdater:
 class ActionYmlUpdater:
     """Updates uv version in action.yml files."""
 
-    def __init__(self, fetcher: VersionFetcher | None = None) -> None:
-        self.fetcher = fetcher or VersionFetcher()
-        self.files = ACTION_YML_FILES
-
     def update(self, dry_run: bool = False) -> int:
         """Update all action.yml files. Returns count of updates."""
-        version = self.fetcher.get_github_release("astral-sh/uv")
+        version = get_github_release(UV_REPO)
         if not version:
             logger.warning("Failed to fetch uv version")
             return 0
@@ -77,7 +69,7 @@ class ActionYmlUpdater:
             r'[0-9]+\.[0-9]+\.[0-9]+(")'
         )
 
-        for filepath in self.files:
+        for filepath in ACTION_YML_FILES:
             if not filepath.exists():
                 continue
 
@@ -100,23 +92,18 @@ class ActionYmlUpdater:
 class PreCommitConfigUpdater:
     """Updates hook revisions in .pre-commit-config.yaml."""
 
-    def __init__(self, fetcher: VersionFetcher | None = None) -> None:
-        self.fetcher = fetcher or VersionFetcher()
-        self.file = PRECOMMIT_CONFIG
-        self.hooks = PRECOMMIT_HOOKS
-
     def update(self, dry_run: bool = False) -> int:
         """Update pre-commit config. Returns count of updates."""
-        if not self.file.exists():
+        if not PRECOMMIT_CONFIG.exists():
             return 0
 
         update_count = 0
-        content = self.file.read_text()
+        content = PRECOMMIT_CONFIG.read_text()
 
-        for repo_url, owner_repo in self.hooks:
-            version = self.fetcher.get_github_tag(owner_repo)
+        for repo_url, github_repo in PRECOMMIT_HOOKS:
+            version = get_github_tag(github_repo)
             if not version:
-                logger.warning("Failed to fetch version for %s", owner_repo)
+                logger.warning("Failed to fetch version for %s", github_repo)
                 continue
 
             hook_name = repo_url.split("/")[-1]
@@ -128,10 +115,10 @@ class PreCommitConfigUpdater:
             new_content, count = re.subn(pattern, replacement, content)
 
             if count > 0 and new_content != content:
-                logger.info("%s: %s -> v%s", self.file.name, hook_name, version)
+                logger.info("%s: %s -> v%s", PRECOMMIT_CONFIG.name, hook_name, version)
                 if not dry_run:
-                    self.file.write_text(new_content)
-                content = new_content  # Update for next iteration
+                    PRECOMMIT_CONFIG.write_text(new_content)
+                content = new_content
                 update_count += 1
 
         return update_count

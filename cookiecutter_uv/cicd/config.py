@@ -4,6 +4,8 @@ from __future__ import annotations
 
 from pathlib import Path
 
+from cookiecutter_uv.cicd.fetchers import GitHubRepo
+
 # Repository root (relative to this file)
 REPO_ROOT = Path(__file__).parent.parent.parent
 
@@ -38,8 +40,11 @@ PYPI_PACKAGES = [
     "hatchling",
 ]
 
-# Pre-commit hooks: (repo_url, github_owner_repo)
+# GitHub repository for uv
+UV_REPO = GitHubRepo(owner="astral-sh", repo="uv")
+
+# Pre-commit hooks: (repo_url, GitHubRepo)
 PRECOMMIT_HOOKS = [
-    ("https://github.com/pre-commit/pre-commit-hooks", "pre-commit/pre-commit-hooks"),
-    ("https://github.com/astral-sh/ruff-pre-commit", "astral-sh/ruff-pre-commit"),
+    ("https://github.com/pre-commit/pre-commit-hooks", GitHubRepo(owner="pre-commit", repo="pre-commit-hooks")),
+    ("https://github.com/astral-sh/ruff-pre-commit", GitHubRepo(owner="astral-sh", repo="ruff-pre-commit")),
 ]

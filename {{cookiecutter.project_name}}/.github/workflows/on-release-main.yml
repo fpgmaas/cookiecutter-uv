@@ -5,11 +5,15 @@ on:
     types: [published]
 
 jobs:
-{% if cookiecutter.publish_to_pypi == "y" %}
   set-version:
     runs-on: ubuntu-24.04
+    permissions:
+      # Give the default GITHUB_TOKEN write permission to commit and push changes
+      contents: write
     steps:
       - uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Export tag
         id: vars
@@ -29,6 +33,13 @@ jobs:
           name: pyproject-toml
           path: pyproject.toml
 
+      - name: Commit pyproject.toml version update
+        uses: stefanzweifel/git-auto-commit-action@v6
+        with:
+          commit_message: {% raw %}"Update version to ${{ steps.vars.outputs.tag }}"{% endraw %}
+          file_pattern: pyproject.toml
+        if: {% raw %}${{ github.event_name == 'release' }}{% endraw %}
+{% if cookiecutter.publish_python_package == "pypi" %}
   publish:
     runs-on: ubuntu-latest
     needs: [set-version]
@@ -52,9 +63,37 @@ jobs:
         env:
           UV_PUBLISH_TOKEN: {% raw %}${{ secrets.PYPI_TOKEN }}{% endraw %}
 {% endif %}
+{% if cookiecutter.publish_python_package == "azure_artifacts" %}
+  publish:
+    runs-on: ubuntu-latest
+    needs: [set-version]
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Set up the environment
+        uses: ./.github/actions/setup-python-env
+
+      - name: Download updated pyproject.toml
+        uses: actions/download-artifact@v4
+        with:
+          name: pyproject-toml
+
+      - name: Build package
+        run: uv build
+        env:
+          UV_INDEX_PRIVATE_REGISTRY_USERNAME: {% raw %}${{ secrets.UV_INDEX_PRIVATE_REGISTRY_USERNAME }}{% endraw %}
+          UV_INDEX_PRIVATE_REGISTRY_PASSWORD: {% raw %}${{ secrets.UV_INDEX_PRIVATE_REGISTRY_PASSWORD }}{% endraw %}
+
+      - name: Publish package to Azure Artifacts
+        run: uv publish --index private-registry
+        env:
+          UV_PUBLISH_USERNAME: {% raw %}${{ secrets.UV_PUBLISH_USERNAME }}{% endraw %}
+          UV_PUBLISH_PASSWORD: {% raw %}${{ secrets.UV_PUBLISH_PASSWORD }}{% endraw %}
+{% endif %}
 {%- if cookiecutter.mkdocs == "y" %}
   deploy-docs:
-    {%- if cookiecutter.publish_to_pypi == "y" %}
+    {%- if cookiecutter.publish_python_package in ["pypi", "azure_artifacts"] %}
     needs: publish
     {%- endif %}
     runs-on: ubuntu-latest

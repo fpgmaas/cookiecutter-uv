@@ -5,7 +5,7 @@ description = "A python cookiecutter application to create a new python project 
 authors = [{ name = "Florian Maas", email = "fpgmaas@gmail.com" }]
 readme = "README.md"
 keywords = ['cookiecutter', 'template', 'uv']
-requires-python = ">=3.9,<4.0"
+requires-python = ">=3.10,<4.0"
 dependencies = [
   "click>=8.1.7",
   "cookiecutter>=2.6.0",
@@ -16,7 +16,6 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
     "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",

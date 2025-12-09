@@ -92,7 +92,7 @@ exclude = [
 ```toml
 [tool.ty.environment]
 python = "./.venv"
-python-version = "3.9"
+python-version = "3.10"
 ```
 
 ## deptry

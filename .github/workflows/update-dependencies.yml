@@ -1,0 +1,43 @@
+name: Update Dependencies
+
+on:
+  schedule:
+    # Run weekly on Monday at 9 AM UTC
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+    # Allow manual trigger
+
+permissions:
+  contents: write
+  pull-requests: write
+
+jobs:
+  update-deps:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python and uv
+        uses: ./.github/actions/setup-python-env
+
+      - name: Run dependency update
+        run: uv run cookiecutter-uv-cicd update-dependencies
+
+      - name: Create Pull Request
+        uses: peter-evans/create-pull-request@v7
+        with:
+          commit-message: "chore: update dependencies"
+          title: "chore: weekly dependency updates"
+          body: |
+            Automated weekly dependency updates.
+
+            This PR updates:
+            - Python package versions in `pyproject.toml` files
+            - uv version in GitHub Actions
+            - Pre-commit hook versions
+
+            Please review the changes and merge if CI passes.
+          branch: chore/update-dependencies
+          delete-branch: true
+          labels: dependencies

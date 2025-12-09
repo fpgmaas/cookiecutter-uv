@@ -1,0 +1,16 @@
+name: "Setup Python Environment"
+
+inputs:
+  python-version:
+    description: "Python version to use"
+    required: true
+    default: "3.12"
+  uv-version:
+    description: "uv version to use"
+    required: true
+    default: "0.5.0"
+
+runs:
+  using: "composite"
+  steps:
+    - uses: actions/setup-python@v5

@@ -7,7 +7,8 @@ readme = "README.md"
 keywords = ['cookiecutter', 'template', 'uv']
 requires-python = ">=3.9,<4.0"
 dependencies = [
-  "cookiecutter>=2.1.1"
+  "click>=8.1.7",
+  "cookiecutter>=2.1.1",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -24,6 +25,9 @@ classifiers = [
     "Topic :: Software Development :: Code Generators",
 ]
 
+
+[project.scripts]
+cookiecutter-uv-cicd = "cookiecutter_uv.cicd.cli:cli"
 
 [project.urls]
 Repository = "https://github.com/fpgmaas/cookiecutter-uv"

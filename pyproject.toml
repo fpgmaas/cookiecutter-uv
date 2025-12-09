@@ -8,7 +8,7 @@ keywords = ['cookiecutter', 'template', 'uv']
 requires-python = ">=3.9,<4.0"
 dependencies = [
   "click>=8.1.7",
-  "cookiecutter>=2.1.1",
+  "cookiecutter>=2.6.0",
 ]
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -36,17 +36,17 @@ Homepage = "https://fpgmaas.github.io/cookiecutter-uv/"
 
 [dependency-groups]
 dev = [
-    "pytest>=7.2.0",
-    "pre-commit>=2.20.0",
-    "pytest-cookies>=0.6.1",
-    "tox-uv>=1.11.3",
-    "deptry>=0.23.0",
-    "mypy>=0.991",
-    "pytest-cov>=4.0.0",
-    "ruff>=0.11.5",
-    "mkdocs>=1.4.2",
-    "mkdocs-material>=8.5.10",
-    "mkdocstrings[python]>=0.19.0",
+    "pytest>=9.0.2",
+    "pre-commit>=4.5.0",
+    "pytest-cookies>=0.7.0",
+    "tox-uv>=1.29.0",
+    "deptry>=0.24.0",
+    "mypy>=1.19.0",
+    "pytest-cov>=7.0.0",
+    "ruff>=0.14.8",
+    "mkdocs>=1.6.1",
+    "mkdocs-material>=9.7.0",
+    "mkdocstrings[python]>=1.0.0",
 ]
 
 [build-system]

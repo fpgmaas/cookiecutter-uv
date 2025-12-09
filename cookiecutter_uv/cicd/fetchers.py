@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import json
 from dataclasses import dataclass
+from typing import Any
 from urllib.error import HTTPError, URLError
 from urllib.request import urlopen
 
@@ -19,13 +20,14 @@ class GitHubRepo:
 
     def __str__(self) -> str:
         return f"{self.owner}/{self.repo}"
-    
+
 
 def get_pypi_version(package: str) -> str | None:
     """Get the latest version of a package from PyPI."""
     data = _fetch_json(f"https://pypi.org/pypi/{package}/json")
     if data:
-        return data.get("info", {}).get("version")
+        version: str | None = data.get("info", {}).get("version")
+        return version
     return None
 
 
@@ -46,10 +48,13 @@ def get_github_tag(repo: GitHubRepo) -> str | None:
         return tag.lstrip("v") if tag else None
     return None
 
-def _fetch_json(url: str) -> dict | None:
+
+def _fetch_json(url: str) -> Any:
     """Fetch JSON from a URL."""
+    if not url.startswith(("https://", "http://")):
+        return None
     try:
-        with urlopen(url, timeout=TIMEOUT) as response:
+        with urlopen(url, timeout=TIMEOUT) as response:  # noqa: S310
             return json.loads(response.read().decode())
     except (HTTPError, URLError, json.JSONDecodeError):
         return None

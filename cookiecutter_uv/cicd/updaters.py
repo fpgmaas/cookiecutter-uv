@@ -22,21 +22,30 @@ class PyprojectTomlUpdater:
     def __init__(self, files: list[Path]) -> None:
         self.files = files
 
+    @staticmethod
+    def _build_pattern(package: str) -> str:
+        return rf'("{re.escape(package)}(?:\[[^\]]*\])?)>=([^"]+)"'
+
+    @staticmethod
+    def _build_replacement(version: str) -> str:
+        return f'\\g<1>>={version}"'
+
     def _update_file(self, filepath: Path, package: str, version: str) -> bool:
         """Update a single package in a pyproject.toml file. Returns True if updated."""
         content = filepath.read_text()
-        pattern = rf'"{re.escape(package)}(\[[^\]]*\])?>=([^"]+)"'
-
-        def replacement(m: re.Match[str], pkg: str = package, ver: str = version) -> str:
-            extras = m.group(1) or ""
-            return f'"{pkg}{extras}>={ver}"'
-
+        pattern = self._build_pattern(package)
+        replacement = self._build_replacement(version)
         new_content, count = re.subn(pattern, replacement, content)
 
         if count > 0 and new_content != content:
             filepath.write_text(new_content)
             return True
         return False
+
+    def _matches(self, filepath: Path, package: str) -> bool:
+        """Check if file contains the package pattern."""
+        content = filepath.read_text()
+        return bool(re.search(self._build_pattern(package), content))
 
     def update(self, dry_run: bool = False) -> int:
         """Update all pyproject.toml files. Returns count of updates."""
@@ -53,9 +62,7 @@ class PyprojectTomlUpdater:
                     continue
 
                 if dry_run:
-                    content = filepath.read_text()
-                    pattern = rf'"{re.escape(package)}(\[[^\]]*\])?>=([^"]+)"'
-                    if re.search(pattern, content):
+                    if self._matches(filepath, package):
                         logger.info("%s: %s -> %s", filepath, package, version)
                         update_count += 1
                 elif self._update_file(filepath, package, version):
@@ -68,22 +75,33 @@ class PyprojectTomlUpdater:
 class ActionYmlUpdater:
     """Updates uv version in action.yml files."""
 
+    PATTERN = (
+        r'(uv-version:\s*\n\s*description:[^\n]*\n\s*required:[^\n]*\n\s*default:\s*")'
+        r'[0-9]+\.[0-9]+\.[0-9]+(")'
+    )
+
     def __init__(self, files: list[Path]) -> None:
         self.files = files
 
-    def _update_file(self, filepath: Path, version: str, pattern: str) -> bool:
+    @staticmethod
+    def _build_replacement(version: str) -> str:
+        return rf"\g<1>{version}\2"
+
+    def _update_file(self, filepath: Path, version: str) -> bool:
         """Update uv version in an action.yml file. Returns True if updated."""
         content = filepath.read_text()
-
-        def replacement(m: re.Match[str], ver: str = version) -> str:
-            return f"{m.group(1)}{ver}{m.group(2)}"
-
-        new_content, count = re.subn(pattern, replacement, content)
+        replacement = self._build_replacement(version)
+        new_content, count = re.subn(self.PATTERN, replacement, content)
 
         if count > 0 and new_content != content:
             filepath.write_text(new_content)
             return True
         return False
+
+    def _matches(self, filepath: Path) -> bool:
+        """Check if file contains the uv version pattern."""
+        content = filepath.read_text()
+        return bool(re.search(self.PATTERN, content))
 
     def update(self, dry_run: bool = False) -> int:
         """Update all action.yml files. Returns count of updates."""
@@ -93,21 +111,16 @@ class ActionYmlUpdater:
             return 0
 
         update_count = 0
-        pattern = (
-            r'(uv-version:\s*\n\s*description:[^\n]*\n\s*required:[^\n]*\n\s*default:\s*")'
-            r'[0-9]+\.[0-9]+\.[0-9]+(")'
-        )
 
         for filepath in self.files:
             if not filepath.exists():
                 continue
 
             if dry_run:
-                content = filepath.read_text()
-                if re.search(pattern, content):
+                if self._matches(filepath):
                     logger.info("%s: uv -> %s", filepath, version)
                     update_count += 1
-            elif self._update_file(filepath, version, pattern):
+            elif self._update_file(filepath, version):
                 logger.info("%s: uv -> %s", filepath, version)
                 update_count += 1
 
@@ -120,19 +133,31 @@ class PreCommitConfigUpdater:
     def __init__(self, config_file: Path) -> None:
         self.config_file = config_file
 
-    def _update_hook(self, filepath: Path, content: str, repo_url: str, version: str) -> tuple[str, bool]:
+    @staticmethod
+    def _build_pattern(repo_url: str) -> str:
+        return rf'(- repo: {re.escape(repo_url)}\s*\n\s*rev:\s*")[^"]+(")'
+
+    @staticmethod
+    def _build_replacement(version: str) -> str:
+        return rf"\g<1>v{version}\2"
+
+    @staticmethod
+    def _extract_hook_name(repo_url: str) -> str:
+        return repo_url.split("/")[-1]
+
+    def _update_hook(self, content: str, repo_url: str, version: str) -> tuple[str, bool]:
         """Update a single hook in pre-commit config. Returns (new_content, updated)."""
-        pattern = rf'(- repo: {re.escape(repo_url)}\s*\n\s*rev:\s*")[^"]+(")'
-
-        def replacement(m: re.Match[str], v: str = version) -> str:
-            return f"{m.group(1)}v{v}{m.group(2)}"
-
+        pattern = self._build_pattern(repo_url)
+        replacement = self._build_replacement(version)
         new_content, count = re.subn(pattern, replacement, content)
 
         if count > 0 and new_content != content:
-            filepath.write_text(new_content)
             return new_content, True
         return content, False
+
+    def _matches(self, content: str, repo_url: str) -> bool:
+        """Check if content contains the hook pattern."""
+        return bool(re.search(self._build_pattern(repo_url), content))
 
     def update(self, dry_run: bool = False) -> int:
         """Update pre-commit config. Returns count of updates."""
@@ -148,17 +173,20 @@ class PreCommitConfigUpdater:
                 logger.warning("Failed to fetch version for %s", github_repo)
                 continue
 
-            hook_name = repo_url.split("/")[-1]
+            hook_name = self._extract_hook_name(repo_url)
 
             if dry_run:
-                pattern = rf'(- repo: {re.escape(repo_url)}\s*\n\s*rev:\s*")[^"]+(")'
-                if re.search(pattern, content):
+                if self._matches(content, repo_url):
                     logger.info("%s: %s -> v%s", self.config_file, hook_name, version)
                     update_count += 1
             else:
-                content, updated = self._update_hook(self.config_file, content, repo_url, version)
+                new_content, updated = self._update_hook(content, repo_url, version)
                 if updated:
+                    content = new_content
                     logger.info("%s: %s -> v%s", self.config_file, hook_name, version)
                     update_count += 1
+
+        if not dry_run and update_count > 0:
+            self.config_file.write_text(content)
 
         return update_count

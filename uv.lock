@@ -249,14 +249,14 @@ requires-dist = [
 dev = [
     { name = "deptry", specifier = ">=0.24.0" },
     { name = "mkdocs", specifier = ">=1.6.1" },
-    { name = "mkdocs-material", specifier = ">=9.7.0" },
+    { name = "mkdocs-material", specifier = ">=9.7.1" },
     { name = "mkdocstrings", extras = ["python"], specifier = ">=1.0.0" },
-    { name = "mypy", specifier = ">=1.19.0" },
-    { name = "pre-commit", specifier = ">=4.5.0" },
+    { name = "mypy", specifier = ">=1.19.1" },
+    { name = "pre-commit", specifier = ">=4.5.1" },
     { name = "pytest", specifier = ">=9.0.2" },
     { name = "pytest-cookies", specifier = ">=0.7.0" },
     { name = "pytest-cov", specifier = ">=7.0.0" },
-    { name = "ruff", specifier = ">=0.14.8" },
+    { name = "ruff", specifier = ">=0.14.10" },
     { name = "tox-uv", specifier = ">=1.29.0" },
 ]
 

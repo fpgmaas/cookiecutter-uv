@@ -31,6 +31,9 @@ jobs:
             --precommit-config .pre-commit-config.yaml \
             --precommit-config "{{cookiecutter.project_name}}/.pre-commit-config.yaml"
 
+      - name: Update lockfile
+        run: uv lock
+
       - name: Create Pull Request
         uses: peter-evans/create-pull-request@v7
         with:

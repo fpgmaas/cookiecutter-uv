@@ -23,10 +23,20 @@ files to set-up the environment, run the tests, and check the code
 formatting.
 
 `on-release-main.yml` does all of the former whenever a new release is
-made on the `main` branch. In addition, `on-release-main.yml` also
-publishes the project to PyPI if `publish_to_pypi` is set to
-`"y"`, and it builds and deploys the documentation
-if `mkdocs` is set to `"y"`. To learn more about these features,
+made on the `main` branch.
+In addition, `on-release-main.yml` also
+publishes the project to different package indexes depending on `publish_python_package` value.
+- pypi
+  - PyPI
+- azure_artifacts
+  - Azure Artifacts
+- None
+  - Doesn't publish
+
+It also it builds and deploys the documentation
+if `mkdocs` is set to `"y"`.
+
+To learn more about these features,
 see [Publishing to PyPI](./publishing.md) and [Documentation with MkDocs](./mkdocs.md)
 
 Additionally, all workflows check for compatibility with multiple Python

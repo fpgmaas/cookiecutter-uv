@@ -70,16 +70,34 @@ def test_not_devcontainer(cookies, tmp_path):
 
 def test_cicd_contains_pypi_secrets(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "y"})
+        result = cookies.bake(extra_context={"publish_python_package": "pypi"})
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
         assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "PYPI_TOKEN")
         assert file_contains_text(f"{result.project_path}/Makefile", "build-and-publish")
 
 
+def test_cicd_contains_azure_artifacts_secrets(cookies, tmp_path):
+    with run_within_dir(tmp_path):
+        result = cookies.bake(extra_context={"publish_python_package": "azure_artifacts"})
+        assert result.exit_code == 0
+        assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
+
+        assert file_contains_text(
+            f"{result.project_path}/.github/workflows/on-release-main.yml", "UV_INDEX_PRIVATE_REGISTRY_PASSWORD"
+        )
+        assert file_contains_text(
+            f"{result.project_path}/.github/workflows/on-release-main.yml", "UV_INDEX_PRIVATE_REGISTRY_USERNAME"
+        )
+        assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "UV_PUBLISH_PASSWORD")
+        assert file_contains_text(f"{result.project_path}/.github/workflows/on-release-main.yml", "UV_PUBLISH_USERNAME")
+
+        assert file_contains_text(f"{result.project_path}/Makefile", "build-and-publish")
+
+
 def test_dont_publish(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "n"})
+        result = cookies.bake(extra_context={"publish_python_package": "None"})
         assert result.exit_code == 0
         assert is_valid_yaml(result.project_path / ".github" / "workflows" / "on-release-main.yml")
         assert not file_contains_text(
@@ -153,11 +171,11 @@ def test_not_codecov(cookies, tmp_path):
 
 def test_remove_release_workflow(cookies, tmp_path):
     with run_within_dir(tmp_path):
-        result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "y"})
+        result = cookies.bake(extra_context={"publish_python_package": "None", "mkdocs": "y"})
         assert result.exit_code == 0
         assert os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")
 
-        result = cookies.bake(extra_context={"publish_to_pypi": "n", "mkdocs": "n"})
+        result = cookies.bake(extra_context={"publish_python_package": "None", "mkdocs": "n"})
         assert result.exit_code == 0
         assert not os.path.isfile(f"{result.project_path}/.github/workflows/on-release-main.yml")
 

@@ -13,9 +13,10 @@
     "y",
     "n"
   ],
-  "publish_to_pypi": [
-    "y",
-    "n"
+  "publish_python_package": [
+    "pypi",
+    "azure_artifacts",
+    "None"
   ],
   "deptry": [
     "y",

@@ -16,7 +16,7 @@ This command will run the following tools:
 
 ```
 [tool.ruff]
-target-version = "py39"
+target-version = "py310"
 line-length = 120
 fix = true
 select = [

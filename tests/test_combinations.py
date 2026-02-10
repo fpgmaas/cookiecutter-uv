@@ -2,10 +2,6 @@ from __future__ import annotations
 
 import pytest
 
-# ---------------------------------------------------------------------------
-# Option sets
-# ---------------------------------------------------------------------------
-
 MINIMAL = {
     "include_github_actions": "n",
     "publish_to_pypi": "n",
@@ -46,11 +42,6 @@ DEFAULTS = {
 def _effective(options: dict[str, str]) -> dict[str, str]:
     """Return the full set of effective options (defaults merged with overrides)."""
     return {**DEFAULTS, **options}
-
-
-# ---------------------------------------------------------------------------
-# Tier 1: Structural smoke tests (fast, no install)
-# ---------------------------------------------------------------------------
 
 
 @pytest.mark.parametrize("options", COMBINATIONS)
@@ -170,11 +161,6 @@ class TestStructure:
                 assert not project.has_file("codecov.yaml")
 
 
-# ---------------------------------------------------------------------------
-# Tier 2: Integration tests (slow — install + run tests)
-# ---------------------------------------------------------------------------
-
-
 @pytest.mark.slow
 @pytest.mark.parametrize("options", COMBINATIONS)
 def test_install_and_run_tests(bake, options):
@@ -182,11 +168,6 @@ def test_install_and_run_tests(bake, options):
     project = bake(**options)
     project.install()
     project.run_tests()
-
-
-# ---------------------------------------------------------------------------
-# Tier 3: Lint validation (slow — install + run make check)
-# ---------------------------------------------------------------------------
 
 
 @pytest.mark.slow

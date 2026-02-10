@@ -61,6 +61,7 @@ packages = ["cookiecutter_uv"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
+markers = ["slow: tests that install dependencies and run commands in baked projects"]
 
 [tool.coverage.report]
 skip_empty = true

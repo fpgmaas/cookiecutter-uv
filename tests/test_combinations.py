@@ -39,8 +39,8 @@ DEFAULTS = {
 }
 
 
-def _effective(options: dict[str, str]) -> dict[str, str]:
-    """Return the full set of effective options (defaults merged with overrides)."""
+def resolve_options(options: dict[str, str]) -> dict[str, str]:
+    """Return the full set of resolved options (defaults merged with overrides)."""
     return {**DEFAULTS, **options}
 
 
@@ -66,7 +66,7 @@ class TestStructure:
 
     def test_conditional_files(self, bake, options):
         project = bake(**options)
-        effective = _effective(options)
+        effective = resolve_options(options)
 
         if effective["dockerfile"] == "y":
             assert project.has_file("Dockerfile")
@@ -96,7 +96,7 @@ class TestStructure:
             assert not project.has_dir(".github")
 
     def test_layout(self, bake, options):
-        effective = _effective(options)
+        effective = resolve_options(options)
         project = bake(**options)
         if effective["layout"] == "src":
             assert project.has_dir("src/example_project")
@@ -106,7 +106,7 @@ class TestStructure:
             assert not project.has_dir("src")
 
     def test_release_workflow(self, bake, options):
-        effective = _effective(options)
+        effective = resolve_options(options)
         project = bake(**options)
         if effective["include_github_actions"] != "y":
             return  # no .github at all
@@ -118,13 +118,13 @@ class TestStructure:
             assert not project.has_file(workflow), "Expected release workflow to be absent"
 
     def test_yaml_validity(self, bake, options):
-        effective = _effective(options)
+        effective = resolve_options(options)
         project = bake(**options)
         if effective["include_github_actions"] == "y":
             assert project.is_valid_yaml(".github/workflows/main.yml")
 
     def test_pyproject_type_checker(self, bake, options):
-        effective = _effective(options)
+        effective = resolve_options(options)
         project = bake(**options)
         content = project.read_file("pyproject.toml")
         if effective["type_checker"] == "mypy":
@@ -135,7 +135,7 @@ class TestStructure:
             assert '"mypy' not in content
 
     def test_makefile_targets(self, bake, options):
-        effective = _effective(options)
+        effective = resolve_options(options)
         project = bake(**options)
         content = project.read_file("Makefile")
 
@@ -150,7 +150,7 @@ class TestStructure:
             assert "docs:" not in content
 
     def test_codecov_workflow(self, bake, options):
-        effective = _effective(options)
+        effective = resolve_options(options)
         project = bake(**options)
         if effective["include_github_actions"] == "y":
             if effective["codecov"] == "y":

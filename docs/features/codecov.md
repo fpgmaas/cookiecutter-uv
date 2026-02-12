@@ -21,7 +21,7 @@ coverage:
         threshold: 1%
 
 # Ignoring Paths
-# ------------
+# --------------
 # which folders/files to ignore
 ignore:
   - "foo/bar.py"

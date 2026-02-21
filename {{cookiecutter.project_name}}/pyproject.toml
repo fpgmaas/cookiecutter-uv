@@ -32,13 +32,13 @@ dev = [
     {% if cookiecutter.type_checker == "mypy" -%}
         "mypy>=1.19.1",
     {%- elif cookiecutter.type_checker == "ty" -%}
-        "ty>=0.0.14",
+        "ty>=0.0.18",
     {%- endif %}
     {% if cookiecutter.codecov == 'y' %}"pytest-cov>=7.0.0",{% endif %}
-    "ruff>=0.14.14",
+    "ruff>=0.15.2",
     {% if cookiecutter.mkdocs == 'y' %}"mkdocs>=1.6.1",
-    "mkdocs-material>=9.7.1",
-    "mkdocstrings[python]>=1.0.2",{% endif %}
+    "mkdocs-material>=9.7.2",
+    "mkdocstrings[python]>=1.0.3",{% endif %}
 ]
 
 [build-system]

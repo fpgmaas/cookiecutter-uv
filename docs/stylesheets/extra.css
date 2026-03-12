@@ -65,3 +65,16 @@
   --md-typeset-table-color: hsla(0, 0%, 100%, 0.12);
   --md-typeset-table-color--light: hsla(0, 0%, 100%, 0.035);
 }
+
+.md-nav__link {
+  display: flex;
+  align-items: center;
+  font-size: 0.65rem;
+  padding-top: 0.2rem;
+  padding-bottom: 0.2rem;
+}
+
+.md-nav__link .md-nav__icon.md-icon {
+  height: 0.7rem;
+  width: 0.7rem;
+}

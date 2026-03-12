@@ -31,7 +31,7 @@ nav = [
 extra_css = ["stylesheets/extra.css"]
 
 [project.theme]
-#favicon = "images/favicon.png"
+favicon = "static/logo.svg"
 language = "en"
 features = [
     "announce.dismiss",
@@ -54,8 +54,9 @@ features = [
     "search.highlight",
 ]
 
+logo = "static/logo.svg"
+
 [project.theme.icon]
-logo = "material/cookie"
 previous = "fontawesome/solid/angle-left"
 next = "fontawesome/solid/angle-right"
 repo = "fontawesome/brands/github"

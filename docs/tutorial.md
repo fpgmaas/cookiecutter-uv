@@ -1,3 +1,7 @@
+---
+icon: material/rocket-launch
+---
+
 # Tutorial
 
 This page contains a complete tutorial on how to create your project.

@@ -1,3 +1,7 @@
+---
+icon: material/console-line
+---
+
 # Prompt arguments
 
 When running the command `ccp` a prompt will start which enables you to configure your repository. The

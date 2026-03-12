@@ -1,3 +1,7 @@
+---
+icon: material/home-circle
+---
+
 <p align="center">
   <img width="600" src="static/cookiecutter.svg">
 </p style = "margin-bottom: 2rem;">

@@ -24,18 +24,21 @@
 }
 
 [data-md-color-scheme="astral-light"] {
-  --md-default-bg-color--dark: var(--black);
-  --md-primary-fg-color: var(--galaxy);
-  --md-typeset-a-color: var(--flare);
-  --md-accent-fg-color: var(--cosmic);
+  --md-default-bg-color: var(--white);
+  --md-default-bg-color--light: var(--comet);
+  --md-default-fg-color: var(--black);
+  --md-default-fg-color--light: var(--black);
+  --md-default-fg-color--lighter: var(--black);
+  --md-primary-bg-color: var(--white);
+  --md-accent-fg-color: var(--galaxy);
 }
 
 [data-md-color-scheme="astral-dark"] {
   --md-default-bg-color: var(--black);
+  --md-default-bg-color--light: var(--space);
   --md-default-fg-color: var(--white);
   --md-default-fg-color--light: var(--white);
   --md-default-fg-color--lighter: var(--white);
-  --md-primary-fg-color: var(--space);
   --md-primary-bg-color: var(--white);
   --md-accent-fg-color: var(--cosmic);
 
